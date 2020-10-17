@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Searcher</title>
+    <link rel="stylesheet" type="text/css" href="./static/content/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./static/content/site.css" />
+    <script src="./static/scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+
+<div class="container body-content">
+<div class="jumbotron">
+    <div class="row" id="row">
+        <div class="col-md-1">
+            <div class="btn-group dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <div id="dn">区县</div>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="javascript:setDistrict(110108,'海淀区')">海淀区</a></li>
+                    <li><a href="javascript:setDistrict(110107,'石景山区')">石景山区</a></li>
+                    <li><a href="javascript:setDistrict(110109,'门头沟区')">门头沟区</a></li>
+                    <li><a href="javascript:setDistrict(110120,'燕山区')">燕山区</a></li>
+                    <li><a href="javascript:setDistrict(110106,'丰台区')">丰台区</a></li>
+                    <li><a href="javascript:setDistrict(110105,'朝阳区')">朝阳区</a></li>
+                    <li><a href="javascript:setDistrict(110102,'西城区')">西城区</a></li>
+                    <li><a href="javascript:setDistrict(110101,'东城区')">东城区</a></li>
+                    <li><a href="javascript:setDistrict(110114,'昌平区')">昌平区</a></li>
+                    <li><a href="javascript:setDistrict(110115,'大兴区')">大兴区</a></li>
+                    <li><a href="javascript:setDistrict(110116,'怀柔区')">怀柔区</a></li>
+                    <li><a href="javascript:setDistrict(110117,'平谷区')">平谷区</a></li>
+                    <li><a href="javascript:setDistrict(110111,'房山区')">房山区</a></li>
+                    <li><a href="javascript:setDistrict(110112,'通州区')">通州区</a></li>
+                    <li><a href="javascript:setDistrict(110113,'顺义区')">顺义区</a></li>
+                    <li><a href="javascript:setDistrict(110229,'延庆区')">延庆区</a></li>
+                    <li><a href="javascript:setDistrict(110228,'密云区')">密云区</a></li>
+                    <li><a href="javascript:setDistrict(110000,'北京市')">北京市</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon">毕业年份:</span>
+                <input type="text" class="form-control" placeholder="2022" disabled="disabled" id="grade" value="2022"/>
+                <span class="input-group-btn">
+                    <div class="btn-group-vertical btn-group-xs">
+                        <button type="button" class="btn btn-default" onclick="$('#grade').attr('value',parseInt($('#grade').val()) + 1)">&uArr;</button>
+                        <button type="button" class="btn btn-default" onclick="$('#grade').attr('value',parseInt($('#grade').val()) - 1)">&dArr;</button>
+                    </div>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon">教育ID:</span>
+                <input type="text" class="form-control" placeholder="10174389" id="id" />
+                <span class="input-group-btn">
+                    <button class="btn btn-default" onclick="search()">搜索</button>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h4>无服务器模式</h4>
+            <!--<img src="http://211.153.80.221/static/cmisfolder/photos/2012003/2021/01124006/09068847.JPG">-->
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading"><p class="panel-title" id="pSn">未搜到</p></div>
+            <div class="panel-body">
+                <img id="pSp" style="width:120px;height:160px" src="https://qlogo3.store.qq.com/qzone/1736319094/1736319094/100?1594915443" />
+            </div>
+            <ul class="list-group">
+                <content class="list-group-item">
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar progress-bar-success" role="progressbar"
+                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                             id="pPrg">
+                            
+                        </div>
+                    </div>
+        
+                </content>
+            </ul>
+        </div>
+
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading"><p class="panel-title" id="mSn">未搜到</p></div>
+            <div class="panel-body">
+                <img id="mSp" style="width:120px;height:160px" src="https://qlogo3.store.qq.com/qzone/1736319094/1736319094/100?1594915443" />
+            </div>
+            <ul class="list-group">
+                <content class="list-group-item">
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar progress-bar-success" role="progressbar"
+                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                             id="mPrg">
+                        </div>
+                    </div>
+                </content>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading"><p class="panel-title" id="hSn">未搜到</p></div>
+            <div class="panel-body">
+                <img id="hSp" style="width:120px;height:160px" src="https://qlogo3.store.qq.com/qzone/1736319094/1736319094/100?1594915443" />
+            </div>
+            <ul class="list-group">
+                <content class="list-group-item">
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar progress-bar-success" role="progressbar"
+                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                             id="hPrg">
+                        </div>
+                    </div>
+                </content>
+            </ul>
+        </div>
+    </div>
+    
+</div>
+<script src="./static/scripts/jquery-1.10.2.js"></script>
+<script src="./static/scripts/bootstrap.js"></script>
+<script src="./static/scripts/respond.js"></script>
+<script src="./static/scripts/searcher.js"></script>
+<script>
+    var ss = {}
+
+    function setDistrict(a, d) {
+        $("#dn").text(d);
+        $.ajax({
+            type: "get",
+            url: "./static/data/" + a+".json",
+            dataType: "json",
+            success: function (data) {
+                ss = data;
+            }
+        });
+    }
+    //var baseUrl1 = "http://211.153.82.232/cmisfolder/photos/{level}/{grade}/{sid}/{uid}.JPG";
+    //var baseUrl2 = "http://211.153.82.232/cmisfolder/photos/{level}/{grade}/{sid}/{uid}.jpg";
+    var baseUrl1 = "http://211.153.80.221/static/cmisfolder/photos/{level}/{grade}/{sid}/{uidi}.JPG"
+    var baseUrl2 = "http://211.153.80.221/static/cmisfolder/photos/{level}/{grade}/{sid}/{uidi}.jpg"
+    
+
+    function main_re() {
+        var pid = ["#pSp", "#mSp", "#hSp"];
+        var nid = ["#pSn", "#mSn", "#hSn"];
+        var Prgid = ["#pPrg","#mPrg","#hPrg"]
+        for (var ii in [0, 1, 2]) {
+            $(nid[ii]).text("未搜到");
+            $(pid[ii]).attr("src", "https://qlogo3.store.qq.com/qzone/1736319094/1736319094/100?1594915443");
+            progressBar(Prgid[ii], 0);
+        }
+        for (var i in ss) {
+            for (var ii in [1, 2, 3]) {
+                console.log(ss[i]["id"] + " " + ii)
+                function sub(status, url, ii, i){
+                    console.log(url)
+                    if (status) {
+                        $(nid[ii]).text(ss[i]["text"]);
+                        $(pid[ii]).attr("src", url);
+                        progressBar(Prgid[ii], 1);
+                    }
+                    if (progressBar(Prgid[ii]) != 1) {
+                        progressBar(Prgid[ii], i / ss.length)
+                    }
+                }
+                s_sub_pic(baseUrl1, $("#grade").val(), ss, $("#id").val(), i, ii, sub);
+                s_sub_pic(baseUrl2, $("#grade").val(), ss, $("#id").val(), i, ii, sub);
+            }
+        }
+    }
+    function search() {
+        if (!ss.length) {
+            alert("请选择区县")
+        } else if ($("#id").val() == "") {
+            alert("请输入id")
+        }else {
+            main_re();
+        }
+    }
+
+</script>
+</div>
+</body>
+</html>
