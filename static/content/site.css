@@ -3,9 +3,18 @@ body {
     padding-bottom: 20px;
 }
 body.main{
-    background-image:url(./static/pic/bg.jpg);
+    /*background-image:url(./static/pic/bg.jpg);*/
 }
-
+canvas {
+  position:absolute;
+  z-index:-2;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #25003a;
+  overflow: hidden;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
