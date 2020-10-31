@@ -12,9 +12,9 @@
   // total number of nodes used (incremented after creation)
   NODES_QTY = 0;
   // avoid nodes spreading
-  ANCHOR_LENGTH = 20;
+  ANCHOR_LENGTH = 10;
   // highlight radius
-  MOUSE_RADIUS = 200;
+  MOUSE_RADIUS = 1000;
 
   circ = 2 * Math.PI;
   nodes = [];
