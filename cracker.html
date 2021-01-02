@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cracker</title>
+    <link rel="stylesheet" type="text/css" href="./static/content/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./static/content/site.css" />
+    <script src="./static/scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+<canvas></canvas>
+<div class="container body-content">
+    <p id="a"></p>
+    <button onclick="sub('09068048','20021225')">aa</button>
+</div>
+</body>
+<script src="./static/scripts/jquery-1.10.2.js"></script>
+<script src="./static/scripts/bootstrap.js"></script>
+<script src="./static/scripts/respond.js"></script>
+<script src="http://zhsz.bjedu.cn/web/js/Base64.js"></script>
+<script src="http://zhsz.bjedu.cn/web/js/DES3.js"></script>
+<script>
+function sub(idName,idPassword){
+    var url = 'http://zhsz.bjedu.cn/web/login/validate';
+    var key = "rEybhlpaq09236H@fg712}3[";//文档中的key为32进制"ckV5YmhscGFxMDkyMzZIQGZnNzEyfTNb"
+    username = idName;
+    idName = DES3.encrypt(key,idName);
+    idPassword = DES3.encrypt(key,idPassword);
+	$.ajax({
+    url: url,
+    type: 'POST',
+    data:{'user':idName,'pass':idPassword,'save':0,sign:BASE64.encoder(username)},
+    dataType: 'json',
+    success: function (re) {
+        $("#a").text(re);
+    }
+});}
+
+</script>
+</html>
