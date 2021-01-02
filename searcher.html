@@ -35,6 +35,9 @@
 
                 </div>
             </div>
+            <div class="text-center">
+                <p id="a"></p>
+            </div>
         </div>
     </div>
 
@@ -54,9 +57,9 @@
             alert(type)
             if(type){
                 $.ajax({
-                url: "https://mc9.rhymc.com:20057/searcher?search",
+                url: "https://mc9.rhymc.com:20058/toSearch",
                 type: 'POST',
-                data:{'type':type,'value':srh},
+                data:{'un':srh},
                 dataType: 'json',
                 success: function (re) {
                     $("#a").text(re);
