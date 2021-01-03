@@ -7,13 +7,9 @@
     <link rel="stylesheet" type="text/css" href="./static/content/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="./static/content/site.css" />
     <script src="./static/scripts/modernizr-2.6.2.js"></script>
-    <!--
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>-->
-    <script src="./static/scripts/jquery-1.10.2.js"></script>
-    <script src="./static/scripts/bootstrap.js"></script>
+    <script src="./static/scripts/jquery-1.10.2.min.js"></script>
+    <script src="./static/scripts/bootstrap.bundle.min.js"></script>
+    <script src="./static/scripts/bootstrap.min.js"></script>
 </head>
 <body>
     <canvas></canvas>
@@ -26,10 +22,8 @@
             <div class="m-auto">
 
                 <div class="input-group mb-3 input-group-lg">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Large</span>
-                    </div>
-                    <input type="text" class="form-control" id="text"/>
+
+                    <input type="text" class="form-control" id="text" aria-placeholder="名字缩写，全名，名字不全也行"/>
 
                     <button onclick="submit()">submit</button>
 
@@ -54,17 +48,26 @@
             else if(srh.match(/^[a-zA-Z]{2,}$/)){type = "simple"}
             else if(srh.match(/^[\u4e00-\u9fa5]{2,5}$/)){type = "name"}
             else {alert("无法匹配匹配搜索")}
-            alert(type)
+
             if(type){
+                GET(
+                    "http://mc9.rhymc.com:20058/toSearch",
+                    {"un":srh},(val)=>{$("#a").text(JSON.stringify(val))}
+                );
+
+
+            /*
                 $.ajax({
                 url: "http://mc9.rhymc.com:20058/toSearch",
-                type: 'POST',
+                type: 'GET',
                 data:{'un':srh},
                 dataType: 'json',
                 success: function (re) {
-                    $("#a").text(re);
+                    $("#a").text(""+re);
+                    alert(re);
                 }
                 });
+                */
             }
 
 

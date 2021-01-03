@@ -1,3 +1,38 @@
+function GET(url,params,onok){
+    var s = document.createElement("script")
+    var head = document.getElementsByTagName("head").item(0)
+    var st = "?"
+    for(i in params){
+        st = st + i + "=" +params[i]+"&"
+    }
+    st = st.slice(0,-1)
+
+    s.src = url +st
+    s.defer = true
+    s.onload = (ev) =>{
+        onok(eval("a"))
+        void(head.removeChild(s))
+    }
+    void(head.appendChild(s))
+}
+
+function POST(URL, PARAMS) {
+    var temp = document.createElement("form");
+    temp.action = URL;
+    temp.method = "post";
+    temp.style.display = "none";
+    for (var x in PARAMS) {
+        var opt = document.createElement("textarea");
+        opt.name = x;
+        opt.value = PARAMS[x];
+        // alert(opt.name)
+        temp.appendChild(opt);
+    }
+    document.body.appendChild(temp);
+    temp.submit();
+    return temp;
+}
+
 function sub_pic(url, onok) {
     var tmp = document.createElement("img");
     tmp.src = url;
