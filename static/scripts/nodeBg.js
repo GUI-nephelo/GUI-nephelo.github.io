@@ -14,7 +14,7 @@
   // avoid nodes spreading
   ANCHOR_LENGTH = 10;
   // highlight radius
-  MOUSE_RADIUS = 1000;
+  MOUSE_RADIUS = 100;
 
   circ = 2 * Math.PI;
   nodes = [];
