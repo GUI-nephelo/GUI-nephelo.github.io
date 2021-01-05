@@ -23,9 +23,9 @@
 
                 <div class="input-group mb-3 input-group-lg">
 
-                    <input type="text" class="form-control" id="text" aria-placeholder="名字缩写，全名，名字不全也行"/>
+                    <input type="text" class="form-control" id="text" placeholder="名字缩写，全名，名字不全也行"/>
 
-                    <button onclick="submit()">submit</button>
+                    <button onclick="submit()" class="btn btn-default" style="background:#dcdcdc">搜索</button>
 
                 </div>
             </div>
@@ -33,40 +33,65 @@
                 <p id="a"></p>
             </div>
         </div>
-        <div class="card" hidden>
+        <div class="card" style="display:none;font-size:10px;">
             <div class="card-body">
-                <table class = "table">
-                    <thead>
-                        <tr>
-                            <th>
-                                教育ID
-                            </th>
-                            <th>
-                                姓名
-                            </th>
-                            <th>
-                                高中
-                            </th>
-                            <th>
-                                毕业年份
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <div class="table-responsive-lg">
+                    <table class = "table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <p class="tc">教育ID</p>
+                                </th>
+                                <th>
+                                    <p class="tc">姓名</p>
+                                </th>
+                                <th>
+                                    <p class="tc">高中</p>
+                                </th>
+                                <th>
+                                    <p class="tc">毕业年份</p>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="tb">
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-
+        <footer>
+            cc
+        </footer>
     </div>
 
     <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="./static/scripts/respond.js"></script>
     <script src="./static/scripts/searcher.js"></script>
     <script>
+        var tb = document.getElementById("tb")
+        function showT(){$(".card").show()}
+        function put(ol){
+            for(oi in ol)
+            {
+                var r = tb.insertRow()
+                o = ol[oi]
+                r.onclick = (val) =>{console.log(val)}
+                mp = ["id","name","sHigh","grade"]
+                for(i in mp){
+                    t = o[mp[i]]
+                    var c = r.insertCell()
+                    if(i==2&&t!=null){
+                        t = t.slice(3,t.length)
+                    }
+                    c.innerHTML = "<p class='tc'>"+t+"</p>"
+
+                }
+            }
+        }
         function submit(){
             var srh = $("#text").val();
+            showT()
             //alert(srh)
             var type = "";
 
@@ -78,7 +103,7 @@
             if(type){
                 GET(
                     "http://mc9.rhymc.com:20058/toSearch",
-                    {"un":srh},(val)=>{$("#a").text(JSON.stringify(val))}
+                    {"un":srh},(val)=>{/*$("#a").text(JSON.stringify(val));*/put(val)}
                 );
 
 
