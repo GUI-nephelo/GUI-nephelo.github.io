@@ -83,7 +83,7 @@ String.prototype.format = function (args) {
     }
     return result;
 }
-function sleep(delay) {
+function sleep(d) {
     for (var t = Date.now(); Date.now() - t <= d;);
 }
 
