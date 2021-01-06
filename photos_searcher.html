@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="./static/content/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="./static/content/site.css" />
     <script src="./static/scripts/modernizr-2.6.2.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
 </head>
 <body>
 <canvas></canvas>
@@ -20,10 +21,10 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="javascript:setDistrict(110108,'海淀区')">海淀区</a></li>
-                    <li><a href="javascript:setDistrict(110107,'石景山区')">石景山区</a></li>
-                    <li><a href="javascript:setDistrict(110109,'门头沟区')">门头沟区</a></li>
-                    <li><a href="javascript:setDistrict(110120,'燕山区')">燕山区</a></li>
+                    <a href="javascript:setDistrict(110108,'海淀区')">海淀区</a>
+                    <a href="javascript:setDistrict(110107,'石景山区')">石景山区</a>
+                    <a href="javascript:setDistrict(110109,'门头沟区')">门头沟区</a>
+                    <a href="javascript:setDistrict(110120,'燕山区')">燕山区</a>
                     <li><a href="javascript:setDistrict(110106,'丰台区')">丰台区</a></li>
                     <li><a href="javascript:setDistrict(110105,'朝阳区')">朝阳区</a></li>
                     <li><a href="javascript:setDistrict(110102,'西城区')">西城区</a></li>
@@ -71,64 +72,56 @@
 
 <div class="row">
     <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading"><p class="panel-title" id="pSn">未搜到</p></div>
-            <div class="panel-body">
+        <div class="card card-default">
+            <div class="card-header">未搜到</div>
+            <div class="card-body">
                 <img id="pSp" style="width:120px;height:160px" src="https://qlogo3.store.qq.com/qzone/1736319094/1736319094/100?1594915443" />
             </div>
-            <ul class="list-group">
-                <content class="list-group-item">
-                    <div class="progress progress-striped active">
-                        <div class="progress-bar progress-bar-success" role="progressbar"
-                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
-                             id="pPrg">
-                            
-                        </div>
+            <div class="card-footer">
+                <div class="progress progress-striped active">
+                    <div class="progress-bar progress-bar-success" role="progressbar"
+                         aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                         id="pPrg">
                     </div>
-        
-                </content>
-            </ul>
+                </div>
+            </div>
         </div>
 
     </div>
     <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading"><p class="panel-title" id="mSn">未搜到</p></div>
-            <div class="panel-body">
+        <div class="card card-default">
+            <div class="card-header">未搜到</div>
+            <div class="card-body">
                 <img id="mSp" style="width:120px;height:160px" src="https://qlogo3.store.qq.com/qzone/1736319094/1736319094/100?1594915443" />
             </div>
-            <ul class="list-group">
-                <content class="list-group-item">
-                    <div class="progress progress-striped active">
-                        <div class="progress-bar progress-bar-success" role="progressbar"
-                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
-                             id="mPrg">
-                        </div>
+            <div class="card-footer">
+                <div class="progress progress-striped active">
+                    <div class="progress-bar progress-bar-success" role="progressbar"
+                         aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                         id="mPrg">
                     </div>
-                </content>
-            </ul>
+                </div>
+            </div>
         </div>
     </div>
     <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading"><p class="panel-title" id="hSn">未搜到</p></div>
-            <div class="panel-body">
+        <div class="card card-default">
+            <div class="card-header">未搜到</div>
+            <div class="card-body">
                 <img id="hSp" style="width:120px;height:160px" src="https://qlogo3.store.qq.com/qzone/1736319094/1736319094/100?1594915443" />
             </div>
-            <ul class="list-group">
-                <content class="list-group-item">
-                    <div class="progress progress-striped active">
-                        <div class="progress-bar progress-bar-success" role="progressbar"
-                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
-                             id="hPrg">
-                        </div>
+            <div class="card-footer">
+                <div class="progress progress-striped active">
+                    <div class="progress-bar progress-bar-success" role="progressbar"
+                         aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                         id="hPrg">
                     </div>
-                </content>
-            </ul>
+                </div>
+            </div>
         </div>
     </div>
     
-</div>
+</div><!--图片显示框-->
 <script src="./static/scripts/jquery-1.10.2.js"></script>
 <script src="./static/scripts/bootstrap.js"></script>
 <script src="./static/scripts/respond.js"></script>
