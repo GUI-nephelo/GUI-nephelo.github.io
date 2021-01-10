@@ -101,16 +101,17 @@
         }
         function submit(){
             var srh = $("#text").val();
-            showT()
+
             //alert(srh)
             var type = "";
 
             if(srh.match(/^[0-9]{8}$/i)){type = "uid"}
             else if(srh.match(/^[a-zA-Z]{2,}$/)){type = "simple"}
-            else if(srh.match(/^[\u4e00-\u9fa5]{2,5}$/)){type = "name"}
+            else if(srh.match(/^[\u4e00-\u9fa5]{1,5}$/)){type = "name"}
             else {alert("无法匹配匹配搜索")}
 
             if(type){
+                showT()
                 GET(
                     "http://mc9.rhymc.com:20058/toSearch",
                     {"un":srh},(val)=>{/*$("#a").text(JSON.stringify(val));*/put(val)}
