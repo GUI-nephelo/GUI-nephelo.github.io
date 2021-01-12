@@ -1,3 +1,5 @@
+var callback;
+
 function GET(url,params,onok){
     var s = document.createElement("script")
     var head = document.getElementsByTagName("head").item(0)
@@ -9,8 +11,8 @@ function GET(url,params,onok){
 
     s.src = url +st
     s.defer = true
-    s.onload = (ev) =>{
-        onok(eval("a"))
+    callback = (ev) =>{
+        onok(ev)
         void(head.removeChild(s))
     }
     void(head.appendChild(s))

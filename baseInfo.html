@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>基本信息</title>
     <link rel="stylesheet" type="text/css" href="./static/content/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="./static/content/site.css" />
@@ -11,6 +12,37 @@
     <script src="./static/scripts/bootstrap.min.js"></script>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #333399">
+        <a class="navbar-brand" href="#">学生信息</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="nav nav-pills">
+          <li class="nav-item">
+          <a class="nav-link" data-toggle="pill" href="#photo">照片</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="pill" href="#baseInfo">基本信息</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" data-toggle="pill" href="#cmisInfo">全面信息</a>
+        </li>
+      </ul>
+        </div>
+    </nav>
+        <br>
+<!-- Tab panes-->
+<div class="container">
+    <div class="card">
+        <div class="tab-content">
+            <div class="tab-pane active container" id="default"><h1>暂时无法提供相关信息</h1></div>
+            <div class="tab-pane container" id="photo"><h1>即将开放</h1></div>
+            <div class="tab-pane container" id="baseInfo">敬请期待</div>
+            <div class="tab-pane container" id="cmisInfo">敬请期待</div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
