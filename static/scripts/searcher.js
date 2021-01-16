@@ -1,7 +1,12 @@
 var callback;
 
-function GET(url,params,onok){
+function getParam(o){
+    return eval("Object({'"+o.replace(/&/g,"','").replace(/=/g,"':'")+"'})")
+}
+
+function GET(url,params,onok,onerr){
     var s = document.createElement("script")
+    $(s).attr("class","tmp")
     var head = document.getElementsByTagName("head").item(0)
     var st = "?"
     for(i in params){
@@ -11,12 +16,15 @@ function GET(url,params,onok){
 
     s.src = url +st
     s.defer = true
+    s.onerror = onerr;
+    void(head.appendChild(s))
     callback = (ev) =>{
         onok(ev)
-        void(head.removeChild(s))
+        void(head.removeChild(document.getElementsByClassName("tmp")[0]))
     }
-    void(head.appendChild(s))
+
 }
+
 
 function POST(URL, PARAMS) {
     var temp = document.createElement("form");

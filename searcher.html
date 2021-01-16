@@ -67,6 +67,8 @@
     <script src="./static/scripts/respond.js"></script>
     <script src="./static/scripts/searcher.js"></script>
     <script>
+        var keekie=Math.random()
+        sessionStorage.setItem("keekie",keekie)
         var tb = document.getElementById("tb")
         function showT(){$(".card").show()}
         function put(ol){
@@ -82,7 +84,11 @@
             {
                 var r = tb.insertRow()
                 o = ol[oi]
-                r.onclick = (val) =>{console.log(val)}
+                $(r).click((val) =>{
+                    sessionStorage.setItem("uid",o["id"])
+                    console.log(o["id"])
+                    location.href="baseInfo.html"
+                });
                 mp = ["id","name","sHigh","grade"]
                 for(i in mp){
                     t = o[mp[i]]

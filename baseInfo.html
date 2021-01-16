@@ -8,8 +8,8 @@
     <link rel="stylesheet" type="text/css" href="./static/content/site.css" />
     <script src="./static/scripts/modernizr-2.6.2.js"></script>
     <script src="./static/scripts/jquery-1.10.2.min.js"></script>
-    <script src="./static/scripts/bootstrap.bundle.min.js"></script>
-    <script src="./static/scripts/bootstrap.min.js"></script>
+    <script src="./static/scripts/bootstrap.bundle.js"></script>
+    <script src="./static/scripts/bootstrap.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #333399">
@@ -20,13 +20,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="nav nav-pills">
           <li class="nav-item">
-          <a class="nav-link" data-toggle="pill" href="#photo">照片</a>
+          <a class="nav-link disabled" data-toggle="pill" href="#photo" >照片</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="pill" href="#baseInfo">基本信息</a>
+          <a class="nav-link disabled" data-toggle="pill" href="#baseInfo">基本信息</a>
         </li>
           <li class="nav-item">
-          <a class="nav-link" data-toggle="pill" href="#cmisInfo">全面信息</a>
+          <a class="nav-link disabled" data-toggle="pill" href="#cmisInfo">全面信息</a>
         </li>
       </ul>
         </div>
@@ -36,13 +36,87 @@
 <div class="container">
     <div class="card">
         <div class="tab-content">
-            <div class="tab-pane active container" id="default"><h1>暂时无法提供相关信息</h1></div>
+            <div class="tab-pane active container" id="default">
+                <!--<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">开始演示模态框</button>-->
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">实名认证</h4>
+                <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
+            </div>
+            <form action="javascript:void(0)">
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="name">姓名：</label><input type="text" name="name" pattern="^[\u4e00-\u9fa5]{2,}$" title="请输入中文" class="form-control" id="name"/>
+                    <label for="puid">证件号：</label><input type="text" name="puid" pattern="^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$" title="请输入18位证件号" class="form-control" id="puid"/>
+                </div>
+                <p style="color:#ff0000;display:none;" id="failAuth">验证失败</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <input type="submit" class="btn btn-primary" value="提交"/>
+            </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+            </div>
             <div class="tab-pane container" id="photo"><h1>即将开放</h1></div>
             <div class="tab-pane container" id="baseInfo">敬请期待</div>
             <div class="tab-pane container" id="cmisInfo">敬请期待</div>
         </div>
     </div>
 </div>
+<script src="./static/scripts/searcher.js"></script>
+<script>
 
+    (function($) {
+    $.getUrlParam = function(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r != null) return unescape(r[2]);
+        return null;
+    }
+    })(jQuery);
+    var ukey,ls=localStorage,auth;
+    var authenticated=false;
+    $(".nav-link.disabled").click((ev)=>{
+        alert("请先登录！！")
+    });
+
+    window.onload=async function(){
+        if(sessionStorage.keekie==undefined||sessionStorage.uid==undefined){
+            document.write("<h1>Error!! Illegal entrance</h1>");
+            setTimeout(()=>{location.href="searcher.html"},1000);//跳回搜索入口
+        }
+        do{
+            if(ls.getItem("GUI_seacherid")==null){//如果没注册
+                $("#myModal").modal("show")
+                authenticated = await new Promise((resolve,reject)=>{
+                    $("form").on("submit",(e)=>{
+                        auth=$("form").serialize()
+                        //alert(auth)
+                        GET("http://mc9.rhymc.com:20058/checkAuth",getParam(auth),(val)=>{
+                            if(false){
+
+                            }else{
+                                $("#failAuth").show();
+                                resolve(false);
+                            }
+                        }/*,(err)=>{
+                            reject(err)
+                        }*/);
+                        //$("#myModal").modal("hide")
+                    });
+                });
+            }
+        }while(!authenticated)
+
+    }
+
+</script>
 </body>
 </html>
