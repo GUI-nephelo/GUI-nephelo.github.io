@@ -66,19 +66,28 @@
     <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="./static/scripts/respond.js"></script>
     <script src="./static/scripts/searcher.js"></script>
+
     <script>
-        var keekie=Math.random()
-        sessionStorage.setItem("keekie",keekie)
-        var tb = document.getElementById("tb")
+        GET("http://mc9.rhymc.com:20058/",{"puid_name":localStorage.getItem("puid_name")},(val)=>{
+                if(val["status"]=="authed")
+                    sessionStorage.setItem("isauth",true)
+                else
+                    sessionStorage.setItem("isauth",false)
+            },
+            ()=>{
+                document.write("<h1>Error Host server Unreachable</h1>")
+            }
+        );
         function showT(){$(".card").show()}
         function put(ol){
+            tb = document.getElementById("tb");
             if(ol.length==0){
                 $(".table").hide()
                 $("#nos").show()
             }else{
                 $(".table").show()
                 $("#nos").hide()
-                tb.innerHTML=""
+                tb.innerText=""
             }
             for(oi in ol)
             {
@@ -102,8 +111,6 @@
         }
         function submit(){
             var srh = $("#text").val();
-
-            //alert(srh)
             var type = "";
 
             if(srh.match(/^[0-9]{8}$/i)){type = "uid"}
@@ -115,25 +122,9 @@
                 showT()
                 GET(
                     "http://mc9.rhymc.com:20058/toSearch",
-                    {"un":srh},(val)=>{/*$("#a").text(JSON.stringify(val));*/put(val)}
+                    {"un":srh},(val)=>{put(val)}
                 );
-
-
-            /*
-                $.ajax({
-                url: "http://mc9.rhymc.com:20058/toSearch",
-                type: 'GET',
-                data:{'un':srh},
-                dataType: 'json',
-                success: function (re) {
-                    $("#a").text(""+re);
-                    alert(re);
-                }
-                });
-                */
             }
-
-
         }
     </script>
 </body>

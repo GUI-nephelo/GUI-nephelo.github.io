@@ -1,5 +1,14 @@
 var callback;
 
+var sUrl="http://mc9.rhymc.com:20058/"
+
+$.getUrlParam = function(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r != null) return unescape(r[2]);
+    return null;
+}
+
 function getParam(o){
     return eval("Object({'"+o.replace(/&/g,"','").replace(/=/g,"':'")+"'})")
 }
