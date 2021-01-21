@@ -1,6 +1,6 @@
 var callback;
 
-var sUrl="http://mc9.rhymc.com:20058/"
+var sUrl="https://www.gui-nephelo.tk:20058/"
 
 $.getUrlParam = function(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -33,8 +33,11 @@ function GET(url,params,onok,onerr){
     }
 
 }
-
-
+/*
+function GET(url,params,onok,onerr){
+    $.on
+}
+*/
 function POST(URL, PARAMS) {
     var temp = document.createElement("form");
     temp.action = URL;

@@ -68,7 +68,7 @@
     <script src="./static/scripts/searcher.js"></script>
 
     <script>
-        GET("http://mc9.rhymc.com:20058/",{"puid_name":localStorage.getItem("puid_name")},(val)=>{
+        GET(sUrl,{"puid_name":localStorage.getItem("puid_name")},(val)=>{
                 if(val["status"]=="authed")
                     sessionStorage.setItem("isauth",true)
                 else
@@ -121,7 +121,7 @@
             if(type){
                 showT()
                 GET(
-                    "http://mc9.rhymc.com:20058/toSearch",
+                    sUrl+"/toSearch",
                     {"un":srh},(val)=>{put(val)}
                 );
             }
