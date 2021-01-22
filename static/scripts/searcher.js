@@ -1,6 +1,6 @@
 var callback;
 
-var sUrl="https://www.gui-nephelo.tk:20058/"
+var sUrl="http://www.gui-nephelo.tk:20058/"
 
 
 $.getUrlParam = function(name) {
