@@ -2,6 +2,7 @@ var callback;
 
 var sUrl="https://www.gui-nephelo.tk:20058/"
 
+
 $.getUrlParam = function(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
@@ -35,7 +36,7 @@ function GET(url,params,onok,onerr){
 }
 /*
 function GET(url,params,onok,onerr){
-    $.on
+    $.get()
 }
 */
 function POST(URL, PARAMS) {
