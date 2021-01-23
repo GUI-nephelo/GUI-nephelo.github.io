@@ -13,40 +13,7 @@
 </head>
 <body>
 <div class="container">
-
-
-</div>
-<nav class="navbar navbar-expand-lg navbar-light fixed-up" style="background-color: #333399">
-    <div class="navbar-brand" href="#"><h2>学生信息</h2></div>
-    <div class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-expanded="true" style="border-color:transparent;">
-        <h3 id="subTitle" style="display:none;">aaaaaaaaaaaa</h3>
-    </div>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="nav nav-pills">
-          <li class="nav-item">
-          <a class="nav-link disabled" data-toggle="pill" href="#photo">照片</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" data-toggle="pill" href="#baseInfo">基本信息</a>
-        </li>
-          <li class="nav-item">
-          <a class="nav-link disabled" data-toggle="pill" href="#cmisInfo">全面信息</a>
-        </li>
-      </ul>
-        </div>
-    </nav>
-        <br>
-<!-- Tab panes-->
-<div class="container">
-    <div class="card">
-        <div class="tab-content">
-            <!--<div class="tab-pane active container" id="default">-->
-
-<!-- 模态框（Modal） -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -71,7 +38,39 @@
     </div><!-- /.modal-dialog -->
 <!--</div>-->
             </div>
-            <div class="tab-pane container" id="photo"><h1>即将开放</h1></div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-light fixed-up" style="background-color: #333399">
+    <div class="navbar-brand" href="#"><h2>学生信息</h2></div>
+    <div class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-expanded="true" style="border-color:transparent;">
+        <h3 id="subTitle" style="display:none;"></h3>
+    </div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="nav nav-pills">
+          <li class="nav-item">
+          <a class="nav-link disabled" data-toggle="pill" href="#photo">照片</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" data-toggle="pill" href="#baseInfo">基本信息</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link disabled" data-toggle="pill" href="#cmisInfo">全面信息</a>
+        </li>
+      </ul>
+        </div>
+    </nav>
+        <br>
+
+<!-- Tab panes-->
+<div class="container">
+    <div class="card">
+        <div class="tab-content">
+            <div class="tab-pane container" id="photo">
+                <h1>即将开放</h1>
+                <iframe><p>assssssss</p></iframe>
+            </div>
             <div class="tab-pane container active" id="baseInfo">敬请期待</div>
             <div class="tab-pane container" id="cmisInfo">敬请期待</div>
         </div>
@@ -81,14 +80,15 @@
 <script>
     $(".nav-link").click((ev)=>{
         hash = ev.target.hash
-        console.log(hash);
+        console.log(ev.target.innerText);
+        $("#subTitle").text(ev.target.innerText)
         switch(hash){
             case "#photo":
+
                 console.log("getPhoto");
                 break;
             case "#baseInfo":
                 break;
-
         }
     });
 
@@ -123,6 +123,7 @@
     }
 
     window.onload=async function(){
+        //alert(sessionStorage.keekie)
         if(sessionStorage.uid==undefined||sessionStorage.isauth==undefined){
             document.write("<h1>Error!! Illegal entrance</h1>");
             setTimeout(()=>{location.href="searcher.html"},1000);//跳回搜索入口
@@ -134,6 +135,7 @@
         (ev)=>{
             if(ev["status"]=="success"){
                 $(".nav-link").toggleClass("disabled");
+                $("#subTitle").show()
                 location.href="#baseInfo"
             }else if(ev["status"]=="fail"){
                 alert(ev["message"]);location.href="searcher.html"

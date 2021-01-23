@@ -1,7 +1,7 @@
 var callback;
 
 var sUrl="http://www.gui-nephelo.tk:20058/"
-
+if(sessionStorage["keekie"]==undefined){sessionStorage["keekie"]="";}
 
 $.getUrlParam = function(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -22,7 +22,8 @@ function GET(url,params,onok,onerr){
     for(i in params){
         st = st + i + "=" +params[i]+"&"
     }
-    st = st.slice(0,-1)
+
+    st += "keekie="+sessionStorage["keekie"]
 
     s.src = url +st
     s.defer = true
