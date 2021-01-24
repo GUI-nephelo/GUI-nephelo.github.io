@@ -95,8 +95,9 @@
                 var r = tb.insertRow()
                 o = ol[oi]
                 $(r).click((val) =>{
-                    sessionStorage.setItem("uid",o["id"])
-                    console.log(o["id"])
+                    id = $(val.currentTarget).find(".id").text()
+                    sessionStorage.setItem("uid",id)
+                    console.log(id)
                     location.href="baseInfo.html"
                 });
                 mp = ["id","name","sHigh","grade"]
@@ -106,7 +107,10 @@
                     if(i==2&&t!=null){
                         t = t.slice(3,t.length)
                     }
-                    c.innerHTML = "<p class='tc'>"+t+"</p>"
+                    if(mp[i]=="id"){
+                        c.innerHTML = "<p class='tc id'>"+t+"</p>"
+                    }else{
+                    c.innerHTML = "<p class='tc'>"+t+"</p>"}
                 }
             }
         }

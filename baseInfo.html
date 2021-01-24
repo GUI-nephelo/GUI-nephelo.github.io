@@ -67,10 +67,7 @@
 <div class="container">
     <div class="card">
         <div class="tab-content">
-            <div class="tab-pane container" id="photo">
-                <h1>即将开放</h1>
-                <iframe><p>assssssss</p></iframe>
-            </div>
+            <div class="tab-pane container" id="photo"><div id="pr" class="row"></div></div>
             <div class="tab-pane container active" id="baseInfo">敬请期待</div>
             <div class="tab-pane container" id="cmisInfo">敬请期待</div>
         </div>
@@ -84,8 +81,7 @@
         $("#subTitle").text(ev.target.innerText)
         switch(hash){
             case "#photo":
-
-                console.log("getPhoto");
+                $(document.body).append('<iframe src="./_photo.html" hidden></iframe>')
                 break;
             case "#baseInfo":
                 break;

@@ -35,11 +35,7 @@ function GET(url,params,onok,onerr){
     }
 
 }
-/*
-function GET(url,params,onok,onerr){
-    $.get()
-}
-*/
+
 function POST(URL, PARAMS) {
     var temp = document.createElement("form");
     temp.action = URL;
