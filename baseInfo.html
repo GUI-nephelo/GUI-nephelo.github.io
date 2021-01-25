@@ -75,13 +75,15 @@
 </div>
 <script src="./static/scripts/searcher.js"></script>
 <script>
+    var photo = false;
+    var baseInfo = false;
     $(".nav-link").click((ev)=>{
         hash = ev.target.hash
         console.log(ev.target.innerText);
         $("#subTitle").text(ev.target.innerText)
         switch(hash){
             case "#photo":
-                $(document.body).append('<iframe src="./subFP.html" hidden></iframe>')
+                if(!photo){$(document.body).append('<iframe src="./subFP.html" hidden></iframe>');photo = true;}
                 break;
             case "#baseInfo":
                 break;
