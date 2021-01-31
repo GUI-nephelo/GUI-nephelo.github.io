@@ -14,10 +14,14 @@
   // avoid nodes spreading
   ANCHOR_LENGTH = 10;
   // highlight radius
-  MOUSE_RADIUS = 100;
+  MOUSE_RADIUS = 80//80;
 
   circ = 2 * Math.PI;
   nodes = [];
+
+  LIGHT_DENSITY = 100;
+  LIGHT_NODES_QTY = 0;
+  lights = [];
 
   canvas = document.querySelector('canvas');
   resizeWindow();
@@ -53,7 +57,7 @@
 
   Node.prototype.drawConnections = function() {
     for (var i = 0; i < this.siblings.length; i++) {
-      var color = "rgba(255, 0, 0, " + this.brightness + ")";
+      var color = "rgba(77, 131, 155, " + this.brightness + ")";
       ctx.beginPath();
       ctx.moveTo(this.x, this.y);
       ctx.lineTo(this.siblings[i].x, this.siblings[i].y);
@@ -63,7 +67,7 @@
     }
   };
 
-  Node.prototype.moveNode = function() {
+  Node.prototype.moveNode = function(ANCHOR_LENGTH) {
     this.energy -= 2;
     if (this.energy < 1) {
       this.energy = Math.random() * 100;
@@ -95,10 +99,27 @@
         NODES_QTY++;
       }
     }
+
+    lights=[];
+    for (var i = LIGHT_DENSITY; i < canvas.width; i += LIGHT_DENSITY) {
+      for (var j = LIGHT_DENSITY; j < canvas.height; j += LIGHT_DENSITY) {
+        lights.push(new Node(i, j));
+        LIGHT_NODES_QTY++;
+      }
+    }
+
   }
 
   function calcDistance(node1, node2) {
     return Math.sqrt(Math.pow(node1.x - node2.x, 2) + (Math.pow(node1.y - node2.y, 2)));
+  }
+
+  function calcDistances(nodes1,node2){
+    distances=nodes1.map((node)=>{
+        d=calcDistance(node,node2)
+        return d<MOUSE_RADIUS?d:0;
+    });
+    return eval((distances.join("+"))+"")/nodes1.length
   }
 
   function findSiblings() {
@@ -139,26 +160,32 @@
     resizeWindow();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     findSiblings();
-    var i, node, distance;
+    var i, node, distance,light;
+    lights.map(l=>{l.brightness;l.drawNode()})
     for (i = 0; i < NODES_QTY; i++) {
       node = nodes[i];
+
+      distance = 1/calcDistances(lights,node)
+      /*
       distance = calcDistance({
-        x: mouse.x,
-        y: mouse.y
+        x: /*mouse.xcanvas.width*Math.random(),
+        y: /*mouse.ycanvas.height*Math.random()
       }, node);
-      if (distance < MOUSE_RADIUS) {
-        node.brightness = 1 - distance / MOUSE_RADIUS;
-      } else {
-        node.brightness = 0;
-      }
-    }
+      console.log(distance,distancem)
+      */
+      //console.log(distance)
+      node.brightness = 1 - distance //* MOUSE_RADIUS;
+      if (node.brightness<=0){node.brightness=0}
+      if (node.brightness>=1){node.brightness=1}
+     }
+
     for (i = 0; i < NODES_QTY; i++) {
       node = nodes[i];
       if (node.brightness) {
         node.drawNode();
         node.drawConnections();
       }
-      node.moveNode();
+      node.moveNode(0);
     }
     requestAnimationFrame(redrawScene);
   }
