@@ -14,12 +14,12 @@
   // avoid nodes spreading
   ANCHOR_LENGTH = 10;
   // highlight radius
-  MOUSE_RADIUS = 80//80;
+  MOUSE_RADIUS = 65//80;
 
   circ = 2 * Math.PI;
   nodes = [];
 
-  LIGHT_DENSITY = 100;
+  LIGHT_DENSITY = 160;
   LIGHT_NODES_QTY = 0;
   lights = [];
 
