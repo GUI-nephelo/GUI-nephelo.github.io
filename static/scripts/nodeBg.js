@@ -19,7 +19,8 @@
   circ = 2 * Math.PI;
   nodes = [];
 
-  LIGHT_DENSITY = 160;
+  LIGHT_DENSITY =170;
+  console.log(LIGHT_DENSITY)
   LIGHT_NODES_QTY = 0;
   lights = [];
 
@@ -182,8 +183,8 @@
     for (i = 0; i < NODES_QTY; i++) {
       node = nodes[i];
       if (node.brightness) {
-        node.drawNode();
         node.drawConnections();
+        node.drawNode();
       }
       node.moveNode(0);
     }
