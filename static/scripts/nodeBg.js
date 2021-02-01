@@ -1,14 +1,14 @@
-
+var main=()=>{
   var canvas, ctx, circ, nodes, mouse, SENSITIVITY, SIBLINGS_LIMIT, DENSITY, NODES_QTY, ANCHOR_LENGTH, MOUSE_RADIUS;
 
   // how close next node must be to activate connection (in px)
   // shorter distance == better connection (line width)
-  SENSITIVITY = 100;
+  SENSITIVITY = 85;
   // note that siblings limit is not 'accurate' as the node can actually have more connections than this value that's because the node accepts sibling nodes with no regard to their current connections this is acceptable because potential fix would not result in significant visual difference
   // more siblings == bigger node
-  SIBLINGS_LIMIT = 10;
+  SIBLINGS_LIMIT = 100;
   // default node margin
-  DENSITY = 50;
+  DENSITY = 40;
   // total number of nodes used (incremented after creation)
   NODES_QTY = 0;
   // avoid nodes spreading
@@ -108,7 +108,6 @@
         LIGHT_NODES_QTY++;
       }
     }
-
   }
 
   function calcDistance(node1, node2) {
@@ -192,13 +191,22 @@
   }
 
   function initHandlers() {
+
     document.addEventListener('resize', resizeWindow, false);
     document.querySelector('body').addEventListener('mousemove', mousemoveHandler, false);
   }
 
   function resizeWindow() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.style.width = "100%"//window.innerWidth+400;
+    canvas.style.height = "100%"//window.innerHeight+400;
+    var dd = "50px"
+    var nd = "-50px"
+    canvas.style.top = dd;
+    canvas.style.bottom = nd;
+    canvas.style.right = nd;
+    canvas.style.left = dd;
+    //DENSITY = (canvas.height+canvas.width)/(2*7)
+    console.log(DENSITY)
   }
 
   function mousemoveHandler(e) {
@@ -210,4 +218,5 @@
   initNodes();
   redrawScene();
 
-/*})();*/
+}
+window.onresize=main

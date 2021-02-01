@@ -5,29 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Searcher</title>
     <link rel="stylesheet" type="text/css" href="./static/content/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="./static/content/site.css" />
+    <link rel="stylesheet" type="text/css" href="./static/content/searcher.css" />
     <script src="./static/scripts/modernizr-2.6.2.js"></script>
     <script src="./static/scripts/jquery-1.10.2.min.js"></script>
     <script src="./static/scripts/bootstrap.bundle.min.js"></script>
     <script src="./static/scripts/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="main">
     <div class="container body-content">
+        <!--<br><br><br><br><br>-->
         <div class="jumbotron">
-            <div class="text-center">
-                <h1>Who do you want to search??</h1>
+            <div class="text-center"style="position: relative;top: -4vw;height: 14vw;">
+                <h1>Personal cmis Retrieval Program</h1>
             </div>
-            <div class="m-auto">
-                <div class="input-group mb-3 input-group-lg" style="opacity:0.9;">
-                    <input type="text" class="form-control" id="text" placeholder="名字缩写，全名，名字不全也行"/>
-                    <button onclick="submit()" class="btn btn-default" style="background:#dcdcdc">搜索</button>
+            <div style="position: relative;top:-2vw;">
+                <div class="input-group mb-3 input-group-lg" style="opacity:0.5;">
+                    <input type="text" class="form-control" style="font-size: 3vw;height: 7vw;max-width: 58vw;" id="text" placeholder="名字缩写，全名，名字不全也行"/>
+                    <button onclick="submit()" class="btn btn-default" style="background:#dcdcdc;max-height: 8vw;margin-top: 0vw;padding-top: 1vw;font-size: 2vw;">搜索</button>
                 </div>
             </div>
             <div class="text-center">
                 <p id="a"></p>
             </div>
         </div>
-        <div class="card" style="display:none;font-size:10px;">
+
+
+        <div class="card" style="display:none;font-size: 10px;top: 45vw;">
             <div class="card-body">
                 <div class="text-center" id = "nos">
                     <h4>未搜到</h4>
@@ -69,8 +72,6 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-180926318-1"></script>
     <script src="./static/scripts/myGa.js"></script>
-    <canvas></canvas>
-    <script src="./static/scripts/nodeBg.js"></script>
 
     <script>
         GET(sUrl,{"puid_name":localStorage.getItem("puid_name")},(val)=>{
