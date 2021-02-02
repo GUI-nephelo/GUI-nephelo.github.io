@@ -8,28 +8,37 @@
     <link rel="stylesheet" type="text/css" href="./static/content/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="./static/content/site.css" />
     <script src="./static/scripts/modernizr-2.6.2.js"></script>
-
+    <script src="./static/scripts/jquery-1.10.2.min.js"></script>
 </head>
-<body class="main">
-<canvas></canvas>
+<body>
 
-<div class="container body-content">
+    <div class="container body-content">
         <div class="jumbotron">
             <div class="list-group">
                 <a href="searcher.html" class="list-group-item">学生查</a>
             </div>
         </div>
+        <div class="debug"></div>
     <footer style="color:#1024ff">
         Toolchains © Copyright Powered By nephelo
     </footer>
     </div>
+<canvas></canvas>
 
-<script src="./static/scripts/nodeBg.js"></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-180926318-1"></script>
 <script src="./static/scripts/myGa.js"></script>
 <script>
+debug = $(".debug")
+function show(o){
+    debug.text("")
+    for(i in o)
+    {
+    debug.append(i+":"+o[i]+"<br>")
+    }
+
+}
 var x=document.getElementById("demo");
 function getLocation()
   {
@@ -45,5 +54,6 @@ function showPosition(position)
   "<br />Longitude: " + position.coords.longitude;
   }
 </script>
+    <script src="./static/scripts/nodeBg.js"></script>
 </body>
 </html>

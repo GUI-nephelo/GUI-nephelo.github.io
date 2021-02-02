@@ -1,28 +1,25 @@
-var main=()=>{
+
+/*(function() {*/
+
   var canvas, ctx, circ, nodes, mouse, SENSITIVITY, SIBLINGS_LIMIT, DENSITY, NODES_QTY, ANCHOR_LENGTH, MOUSE_RADIUS;
 
   // how close next node must be to activate connection (in px)
   // shorter distance == better connection (line width)
-  SENSITIVITY = 85;
-  // note that siblings limit is not 'accurate' as the node can actually have more connections than this value that's because the node accepts sibling nodes with no regard to their current connections this is acceptable because potential fix would not result in significant visual difference
+  SENSITIVITY = 100;
+  // note that siblings limit is not 'accurate' as the node can actually have more connections than this value that's because the node accepts sibling nodes with no regard to their current connections this is acceptable because potential fix would not result in significant visual difference 
   // more siblings == bigger node
-  SIBLINGS_LIMIT = 100;
+  SIBLINGS_LIMIT = 10;
   // default node margin
-  DENSITY = 40;
+  DENSITY = 50;
   // total number of nodes used (incremented after creation)
   NODES_QTY = 0;
   // avoid nodes spreading
-  ANCHOR_LENGTH = 10;
+  ANCHOR_LENGTH = 20;
   // highlight radius
-  MOUSE_RADIUS = 65//80;
+  MOUSE_RADIUS = 200;
 
   circ = 2 * Math.PI;
   nodes = [];
-
-  LIGHT_DENSITY =170;
-  console.log(LIGHT_DENSITY)
-  LIGHT_NODES_QTY = 0;
-  lights = [];
 
   canvas = document.querySelector('canvas');
   resizeWindow();
@@ -49,7 +46,7 @@ var main=()=>{
   }
 
   Node.prototype.drawNode = function() {
-    var color = "rgba(255, 255, 0, " + this.brightness + ")";
+    var color = "rgba(255, 0, 0, " + this.brightness + ")";
     ctx.beginPath();
     ctx.arc(this.x, this.y, 2 * this.radius + 2 * this.siblings.length / SIBLINGS_LIMIT, 0, circ);
     ctx.fillStyle = color;
@@ -58,7 +55,7 @@ var main=()=>{
 
   Node.prototype.drawConnections = function() {
     for (var i = 0; i < this.siblings.length; i++) {
-      var color = "rgba(77, 131, 155, " + this.brightness + ")";
+      var color = "rgba(255, 0, 0, " + this.brightness + ")";
       ctx.beginPath();
       ctx.moveTo(this.x, this.y);
       ctx.lineTo(this.siblings[i].x, this.siblings[i].y);
@@ -68,7 +65,7 @@ var main=()=>{
     }
   };
 
-  Node.prototype.moveNode = function(ANCHOR_LENGTH) {
+  Node.prototype.moveNode = function() {
     this.energy -= 2;
     if (this.energy < 1) {
       this.energy = Math.random() * 100;
@@ -94,32 +91,16 @@ var main=()=>{
   function initNodes() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     nodes = [];
-    for (var i = DENSITY; i < canvas.width; i += DENSITY) {
-      for (var j = DENSITY; j < canvas.height; j += DENSITY) {
+    for (var i = -DENSITY; i < canvas.width+DENSITY; i += DENSITY) {
+      for (var j = -DENSITY; j < canvas.height+DENSITY; j += DENSITY) {
         nodes.push(new Node(i, j));
         NODES_QTY++;
-      }
-    }
-
-    lights=[];
-    for (var i = LIGHT_DENSITY; i < canvas.width; i += LIGHT_DENSITY) {
-      for (var j = LIGHT_DENSITY; j < canvas.height; j += LIGHT_DENSITY) {
-        lights.push(new Node(i, j));
-        LIGHT_NODES_QTY++;
       }
     }
   }
 
   function calcDistance(node1, node2) {
     return Math.sqrt(Math.pow(node1.x - node2.x, 2) + (Math.pow(node1.y - node2.y, 2)));
-  }
-
-  function calcDistances(nodes1,node2){
-    distances=nodes1.map((node)=>{
-        d=calcDistance(node,node2)
-        return d<MOUSE_RADIUS?d:0;
-    });
-    return eval((distances.join("+"))+"")/nodes1.length
   }
 
   function findSiblings() {
@@ -160,53 +141,38 @@ var main=()=>{
     resizeWindow();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     findSiblings();
-    var i, node, distance,light;
-    lights.map(l=>{l.brightness;l.drawNode()})
+    var i, node, distance;
     for (i = 0; i < NODES_QTY; i++) {
       node = nodes[i];
-
-      distance = 1/calcDistances(lights,node)
-      /*
       distance = calcDistance({
-        x: /*mouse.xcanvas.width*Math.random(),
-        y: /*mouse.ycanvas.height*Math.random()
+        x: mouse.x,
+        y: mouse.y
       }, node);
-      console.log(distance,distancem)
-      */
-      //console.log(distance)
-      node.brightness = 1 - distance //* MOUSE_RADIUS;
-      if (node.brightness<=0){node.brightness=0}
-      if (node.brightness>=1){node.brightness=1}
-     }
-
+      if (distance < MOUSE_RADIUS) {
+        node.brightness = 1 - distance / MOUSE_RADIUS;
+      } else {
+        node.brightness = 0;
+      }
+    }
     for (i = 0; i < NODES_QTY; i++) {
       node = nodes[i];
       if (node.brightness) {
-        node.drawConnections();
         node.drawNode();
+        node.drawConnections();
       }
-      node.moveNode(0);
+      node.moveNode();
     }
     requestAnimationFrame(redrawScene);
   }
 
   function initHandlers() {
-
     document.addEventListener('resize', resizeWindow, false);
-    document.querySelector('body').addEventListener('mousemove', mousemoveHandler, false);
+    window.addEventListener('mousemove', mousemoveHandler, false);
   }
 
   function resizeWindow() {
-    canvas.style.width = "100%"//window.innerWidth+400;
-    canvas.style.height = "100%"//window.innerHeight+400;
-    var dd = "50px"
-    var nd = "-50px"
-    canvas.style.top = dd;
-    canvas.style.bottom = nd;
-    canvas.style.right = nd;
-    canvas.style.left = dd;
-    //DENSITY = (canvas.height+canvas.width)/(2*7)
-    console.log(DENSITY)
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
   }
 
   function mousemoveHandler(e) {
@@ -218,5 +184,4 @@ var main=()=>{
   initNodes();
   redrawScene();
 
-}
-window.onresize=main
+/*})();*/
