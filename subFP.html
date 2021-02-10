@@ -46,8 +46,9 @@ function setDistrict(a, d) {
             }
         });
     }
-$.getJSON("./static/data/110112.json",(val)=>{sl=val})
-var basePicUrl="http://58.129.247.122/cmis/cmisfolder/photos/"//"http://211.153.82.210/cmisfolder/photos/"
+//$.getJSON("./static/data/110112.json",(val)=>{sl=val})
+var basePicUrl="http://58.129.247.122/cmis/cmisfolder/photos/"
+//"http://211.153.82.210/cmisfolder/photos/"
 var p=parent.$("#pr")
 var b = $(".col-md-4")
 function append(c){
@@ -60,15 +61,13 @@ window.onload=async ()=>{
             resolve(val)
         });
     });
-
     for(i in sl){
         i=sl[i]
-
         await new Promise ((resolve,reject)=>{
             sub_pic(basePicUrl+i,(status,_,url)=>{
                 if(status){
                     b.find("#pSp").attr("src",url)
-                    sC = url.split("/")[7]
+                    sC = url.split("/")[url.split("/").length-2]
                     sN = sll.find((x)=>{return x["id"]==sC})["text"]
                     console.log(sll,sN,sC)
                     b.find(".card-header").text(sN)
@@ -79,7 +78,6 @@ window.onload=async ()=>{
             })
         })
     }
-
 }
 </script>
 </html>
