@@ -18,6 +18,7 @@
             <div class="card-header">未搜到</div>
             <div class="card-body">
                 <img id="pSp" style="width:120px;height:160px" src="https://qlogo3.store.qq.com/qzone/1736319094/1736319094/100?1594915443" />
+                <a id="pSpa" class="card-link" href="" download="photo.jpg" target="_blank" >下载图片</a>
             </div>
             <div class="card-footer">
                 <div class="progress progress-striped active">
@@ -29,6 +30,13 @@
             </div>
         </div>
 <br>
+    </div>
+    <div class="nosearch">
+        <div class="card">
+            <div class="card-body">
+                <h1>未搜到</h1>
+            </div>
+        </div>
     </div>
 </div><!--图片显示框-->
 </div>
@@ -49,8 +57,9 @@ function setDistrict(a, d) {
 //$.getJSON("./static/data/110112.json",(val)=>{sl=val})
 var basePicUrl="http://58.129.247.122/cmis/cmisfolder/photos/"
 //"http://211.153.82.210/cmisfolder/photos/"
-var p=parent.$("#pr")
+var p = parent.$("#pr")
 var b = $(".col-md-4")
+var no = $(".nosearch")
 function append(c){
     p.append(c.clone())
 }
@@ -61,22 +70,28 @@ window.onload=async ()=>{
             resolve(val)
         });
     });
+    cot = 0
     for(i in sl){
         i=sl[i]
         await new Promise ((resolve,reject)=>{
             sub_pic(basePicUrl+i,(status,_,url)=>{
                 if(status){
                     b.find("#pSp").attr("src",url)
+                    b.find("#pSpa").attr("href",url)
                     sC = url.split("/")[url.split("/").length-2]
                     sN = sll.find((x)=>{return x["id"]==sC})["text"]
                     console.log(sll,sN,sC)
                     b.find(".card-header").text(sN)
                     append(b)
+                    cot+=1
                 }
                 console.log(status,url)
                 resolve()
             })
         })
+    }
+    if(cot==0){
+        append(no)
     }
 }
 </script>
