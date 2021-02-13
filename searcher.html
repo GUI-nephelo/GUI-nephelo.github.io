@@ -26,7 +26,8 @@
           <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>
           <a href="searcher.html" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">refresh</i></a>
         </div>
-      </div>
+    </div>
+
 
       <div class="mdui-drawer  " id="left-drawer" overlay="true">
           <br></br>
@@ -48,33 +49,29 @@
           </ul>
           <button class="mdui-btn" mdui-drawer-close>关闭侧边栏</button>
       </div>
+    <div class="mdui-container">
+        <div class="mdui-row " >
+            <!-- 浮动标签、多行文本框 -->
+            <div  class="mdui-textfield mdui-textfield-floating-label">
+                <i class="mdui-icon material-icons" >account_circle</i>
+                <label class="mdui-textfield-label" >请输入查询姓名</label>
+                <input  class="mdui-textfield-input" type="text"  id="text" />
+                <div class="mdui-textfield-helper">输入全名或部分名称即可</div>
+            </div>
+        </div>
+        <button  class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple" onclick="submit()">开始搜索</button>
+    </div>
 
-<div class="mdui-container">
-    <div class="mdui-row " >
-      <!-- 浮动标签、多行文本框 -->
-<div  class="mdui-textfield mdui-textfield-floating-label"  >
-  
-    
-    <i class="mdui-icon material-icons" >account_circle</i>
-    <label class="mdui-textfield-label" >请输入查询姓名</label>
-    <input  class="mdui-textfield-input" type="text"  id="text" />
-    <div class="mdui-textfield-helper">输入全名或部分名称即可</div>
-    
-</div>
-  </div>
-
-
-    <button  class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple" onclick="submit()">开始搜索</button>
     <br></br>
     <br></br>
     <div class="mdui-divider"></div>
     <br></br>
 
       <div class="mdui-container">
-        <div class="card mdui-table-fluid mdui-table-hoverable" style="display:none">
-            <div class=" mdui-table-fluid">
+        <div class="card" style="display:none">
+
                 <div  style="display:none "id = "nos">
-                   <center><h2>未搜到</h1></center> 
+                   <center><h2>未搜到</h2></center>
                 </div>
                 <div class="mdui-table-fluid">
                     <table class = "mdui-table">
@@ -99,7 +96,7 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+
         </div>
       </div>
     </div>
@@ -153,9 +150,9 @@
                 for(i in mp){
                     t = o[mp[i]]
                     var c = r.insertCell()
-                    if(i==2&&t!=null){
+                    /*if(i==2&&t!=null){
                         t = t.slice(3,t.length)
-                    }
+                    }*/
                     if(mp[i]=="id"){
                         c.innerHTML = "<p class='tc id'>"+t+"</p>"
                     }else{
