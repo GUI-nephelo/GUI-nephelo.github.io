@@ -20,19 +20,18 @@
     <div class="mdui-appbar mdui-appbar-fixed">
         <div class="mdui-toolbar mdui-color-theme">
           <a mdui-drawer="{target: '#left-drawer'}" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
-          <a href="javascript:;" class="mdui-typo-headline">GUI-nephelo's toolchain</a>
-          <a href="javascript:;" class="mdui-typo-title">查询用户端</a>
+          <a  class="mdui-typo-headline">GUI-nephelo's toolchain</a>
+          <a href="searcher.html" class="mdui-typo-title">查询用户端</a>
           <div class="mdui-toolbar-spacer"></div>
           <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>
-          <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">refresh</i></a>
-          <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">more_vert</i></a>
+          <a href="searcher.html" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">refresh</i></a>
         </div>
       </div>
 
-      <div class="mdui-drawer" id="left-drawer">
+      <div class="mdui-drawer mdui-drawer-close" id="left-drawer" overlay="false">
           <br></br>
           <br></br>
-        <button class="mdui-btn" mdui-drawer-close>close</button>
+        <button class="mdui-btn" mdui-drawer-close>关闭侧边栏</button>
       </div>
 
 <div class="mdui-container">
@@ -51,34 +50,35 @@
 
 
     <button  class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple" onclick="submit()">开始搜索</button>
-
+    <br></br>
+    <br></br>
  
 
       <div class="mdui-container">
-        <div class="card mdui-table-fluid" style="display:none">
-            <div class="card-body mdui-table-fluid">
+        <div class="card mdui-table-fluid mdui-table-hoverable" style="display:none">
+            <div class=" mdui-table-fluid">
                 <div  style="display:none "id = "nos">
-                    <h1>未搜到</h1>
+                   <center><h2>未搜到</h1></center> 
                 </div>
                 <div class="mdui-table-fluid">
                     <table class = "mdui-table">
                         <thead>
                             <tr>
                                 <th>
-                                    <p>教育ID</p>
+                                    <p style="font-weight: 200; font-style: italic; font-size: larger;">教育ID</p>
                                 </th>
                                 <th>
-                                    <p >姓名</p>
+                                    <p style="font-weight: 200; font-style: italic; font-size: larger;">姓名</p>
                                 </th>
                                 <th>
-                                    <p >高中</p>
+                                    <p style="font-weight: 200; font-style: italic; font-size: larger;">高中</p>
                                 </th>
                                 <th>
-                                    <p>毕业年份</p>
+                                    <p style="font-weight: 200; font-style: italic; font-size: larger;">毕业年份</p>
                                 </th>
                             </tr>
                         </thead>
-                        <tbody id="tb">
+                        <tbody style="font-weight:700;font-size: large;font-style: italic;" id="tb">
 
                         </tbody>
                     </table>
@@ -154,7 +154,7 @@
             if(srh.match(/^[0-9]{8}$/i)){type = "uid"}
             else if(srh.match(/^[a-zA-Z]{2,}$/)){type = "simple"}
             else if(srh.match(/^[\u4e00-\u9fa5]{1,5}$/)){type = "name"}
-            else {alert("Error:无法匹配搜索")}
+            else {mdui.alert("Error:无法匹配搜索")}
 
             if(type){
                 showT()
