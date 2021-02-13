@@ -28,10 +28,25 @@
         </div>
       </div>
 
-      <div class="mdui-drawer mdui-drawer-close" id="left-drawer" overlay="false">
+      <div class="mdui-drawer  " id="left-drawer" overlay="true">
           <br></br>
           <br></br>
-        <button class="mdui-btn" mdui-drawer-close>关闭侧边栏</button>
+        
+        <ul class="mdui-list">
+            <li class="mdui-list-item mdui-ripple">
+              <i class="mdui-list-item-avatar mdui-icon material-icons">folder</i>
+              <div class="mdui-list-item-content">Photos</div>
+            </li>
+            <li class="mdui-list-item mdui-ripple">
+              <i class="mdui-list-item-avatar mdui-icon material-icons" >folder</i>
+              <div class="mdui-list-item-content">Recipes</div>
+            </li>
+            <li class="mdui-list-item mdui-ripple">
+              <i class="mdui-list-item-avatar mdui-icon material-icons">assignment</i>
+              <div class="mdui-list-item-content">Work</div>
+            </li>
+          </ul>
+          <button class="mdui-btn" mdui-drawer-close>关闭侧边栏</button>
       </div>
 
 <div class="mdui-container">
@@ -52,7 +67,8 @@
     <button  class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple" onclick="submit()">开始搜索</button>
     <br></br>
     <br></br>
- 
+    <div class="mdui-divider"></div>
+    <br></br>
 
       <div class="mdui-container">
         <div class="card mdui-table-fluid mdui-table-hoverable" style="display:none">
@@ -116,12 +132,12 @@
         function put(ol){
             tb = document.getElementById("tb");
             if(ol.length==0){
-                $(".table").hide()
-                $("#nos").show()
+                {mdui.alert("错误:无法匹配搜索或查无此人")}
+                tb.innerText=""
+
             }else{
                 $(".table").show()
-                $("#nos").hide()
-                tb.innerText=""
+                
             }
             for(oi in ol)
             {
@@ -154,7 +170,7 @@
             if(srh.match(/^[0-9]{8}$/i)){type = "uid"}
             else if(srh.match(/^[a-zA-Z]{2,}$/)){type = "simple"}
             else if(srh.match(/^[\u4e00-\u9fa5]{1,5}$/)){type = "name"}
-            else {mdui.alert("Error:无法匹配搜索")}
+            else {mdui.alert("错误:无法匹配搜索或查无此人")}
 
             if(type){
                 showT()
@@ -163,6 +179,9 @@
                     {"un":srh},(val)=>{put(val)}
                 );
             }
+        }
+        function beta(){
+            mdui.alert("我们只是在测试哈哈哈哈")
         }
     </script>
 <!--<script src="js/material.js"></script>
