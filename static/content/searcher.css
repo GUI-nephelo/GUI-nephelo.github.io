@@ -105,5 +105,5 @@ input[type="checkbox"].input-validation-error {
 }
 /*响应式字体变化*/
 .tc{
-    font-size: 5px;
+    font-size: 3vw;
 }
