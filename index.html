@@ -5,23 +5,48 @@
     <title>GUI-nephelo's toolchain</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./static/content/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="./static/content/site.css" />
-    <script src="./static/scripts/modernizr-2.6.2.js"></script>
+    <link rel="stylesheet" href="css/material.css"/>
     <script src="./static/scripts/jquery-1.10.2.min.js"></script>
 </head>
 <body>
-
-    <div class="container body-content">
-        <div class="jumbotron">
-            <div class="list-group">
-                <a href="searcher.html" class="list-group-item">学生查</a>
+    <div class="toolbar bg-blue-500 color-white">
+        <button class="icon-button" id="sidemenu-button" onclick="SideMenu.toggle(document.querySelector('#sidemenu'));"><i class="icon-menu"></i></button>
+        <span class="toolbar-label">GUI-nephelo's toolchain</span>
+        <span class="float-right" id="switch-container">
+            <div class="switch">
+                <input type="checkbox" id="dark-theme-switch" onchange="Theme.setTheme(this.checked ? 'dark' : 'light')"/>
+                <label for="dark-theme-switch"></label>
+                <label class="form-control-label">黑暗模式</label>
             </div>
+        </span>
+
+    </div>	
+    <div align="center" vertical-align="middle">
+
+            <br></br>
+            <br></br>
+            <br></br>
+            <h1> Welcome to GUI-nephelo's toolchain</h1>
+            <br></br>
+            <a href="searcher.html"><button class="button raised color-blue-500">点我进入学生查询 </button></a>
+            
+    </div>
+    <div class="sidemenu" id="sidemenu" hidden>
+        <div class="sidemenu-hero fade">
+            <img class="avatar" src="demo-files/avatar.jpg"/>
+            <img class="sidemenu-hero-image" src="demo-files/sidemenu-hero.jpg"/>
+            <span class="title"></span>
+            <span class="text"></span>
         </div>
+        <ul class="menu"> 
+            <li ripple><a href="#"><i class="icon-person-add"></i>Current</a></li> 
+        </ul>
+    </div>
         <div class="debug"></div>
-    <footer style="color:#1024ff">
-        Toolchains © Copyright Powered By nephelo
-    </footer>
+    
+
+	
+</footer>
     </div>
 <canvas></canvas>
 
@@ -29,31 +54,11 @@
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-180926318-1"></script>
 <script src="./static/scripts/myGa.js"></script>
-<script>
-debug = $(".debug")
-function show(o){
-    debug.text("")
-    for(i in o)
-    {
-    debug.append(i+":"+o[i]+"<br>")
-    }
 
-}
-var x=document.getElementById("demo");
-function getLocation()
-  {
-  if (navigator.geolocation)
-    {
-    navigator.geolocation.getCurrentPosition(showPosition);
-    }
-  else{x.innerHTML="Geolocation is not supported by this browser.";}
-  }
-function showPosition(position)
-  {
-  x.innerHTML="Latitude: " + position.coords.latitude +
-  "<br />Longitude: " + position.coords.longitude;
-  }
-</script>
-    <script src="./static/scripts/nodeBg.js"></script>
+<script src="js/material.js"></script>
+<script src="demo-files/demo.js"></script>
+
+
+    
 </body>
 </html>

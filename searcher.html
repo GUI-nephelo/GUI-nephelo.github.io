@@ -4,52 +4,77 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Searcher</title>
-    <link rel="stylesheet" type="text/css" href="./static/content/bootstrap.min.css" />
+    <!--<link rel="stylesheet" type="text/css" href="./static/content/bootstrap.min.css" /> -->
+   <!---- <link rel="stylesheet" href="css/material.css"/> -->
     <link rel="stylesheet" type="text/css" href="./static/content/searcher.css" />
     <script src="./static/scripts/modernizr-2.6.2.js"></script>
     <script src="./static/scripts/jquery-1.10.2.min.js"></script>
-    <script src="./static/scripts/bootstrap.bundle.min.js"></script>
-    <script src="./static/scripts/bootstrap.min.js"></script>
+    <!--<script src="./static/scripts/bootstrap.bundle.min.js"></script>
+    <script src="./static/scripts/bootstrap.min.js"></script> -->
+
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"/>
+
 </head>
-<body class="main">
-    <div class="container body-content">
-        <!--<br><br><br><br><br>-->
-        <div class="jumbotron">
-            <div class="text-center"style="position: relative;top: -4vw;height: 14vw;">
-                <h1>Personal cmis Retrieval Program</h1>
-            </div>
-            <div style="position: relative;top:-2vw;">
-                <div class="input-group mb-3 input-group-lg" style="opacity:0.5;">
-                    <input type="text" class="form-control" style="font-size: 3vw;height: 7vw;max-width: 58vw;" id="text" placeholder="名字缩写，全名，名字不全也行"/>
-                    <button onclick="submit()" class="btn btn-default" style="background:#dcdcdc;max-height: 8vw;margin-top: 0vw;padding-top: 1vw;font-size: 2vw;">搜索</button>
-                </div>
-            </div>
-            <div class="text-center">
-                <p id="a"></p>
-            </div>
+<body class="mdui-theme-primary-indigo mdui-theme-accent-pink mdui-theme-layout-auto  mdui-drawer-body-left" >
+
+    <div class="mdui-appbar mdui-appbar-fixed">
+        <div class="mdui-toolbar mdui-color-theme">
+          <a mdui-drawer="{target: '#left-drawer'}" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+          <a href="javascript:;" class="mdui-typo-headline">GUI-nephelo's toolchain</a>
+          <a href="javascript:;" class="mdui-typo-title">查询用户端</a>
+          <div class="mdui-toolbar-spacer"></div>
+          <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>
+          <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">refresh</i></a>
+          <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">more_vert</i></a>
         </div>
+      </div>
+
+      <div class="mdui-drawer" id="left-drawer">
+          <br></br>
+          <br></br>
+        <button class="mdui-btn" mdui-drawer-close>close</button>
+      </div>
+
+<div class="mdui-container">
+    <div class="mdui-row " >
+      <!-- 浮动标签、多行文本框 -->
+<div  class="mdui-textfield mdui-textfield-floating-label"  >
+  
+    
+    <i class="mdui-icon material-icons" >account_circle</i>
+    <label class="mdui-textfield-label" >请输入查询姓名</label>
+    <input  class="mdui-textfield-input" type="text"  id="text" />
+    <div class="mdui-textfield-helper">输入全名或部分名称即可</div>
+    
+</div>
+  </div>
 
 
-        <div class="card" style="display:none;font-size: 10px;top: 45vw;">
-            <div class="card-body">
-                <div class="text-center" id = "nos">
-                    <h4>未搜到</h4>
+    <button  class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple" onclick="submit()">开始搜索</button>
+
+ 
+
+      <div class="mdui-container">
+        <div class="card mdui-table-fluid" style="display:none">
+            <div class="card-body mdui-table-fluid">
+                <div  style="display:none "id = "nos">
+                    <h1>未搜到</h1>
                 </div>
-                <div class="table-responsive-lg">
-                    <table class = "table">
+                <div class="mdui-table-fluid">
+                    <table class = "mdui-table">
                         <thead>
                             <tr>
                                 <th>
-                                    <p class="tc">教育ID</p>
+                                    <p>教育ID</p>
                                 </th>
                                 <th>
-                                    <p class="tc">姓名</p>
+                                    <p >姓名</p>
                                 </th>
                                 <th>
-                                    <p class="tc">高中</p>
+                                    <p >高中</p>
                                 </th>
                                 <th>
-                                    <p class="tc">毕业年份</p>
+                                    <p>毕业年份</p>
                                 </th>
                             </tr>
                         </thead>
@@ -60,8 +85,10 @@
                 </div>
             </div>
         </div>
+      </div>
+    </div>
+ </div>
         <footer>
-            cc
         </footer>
         </div>
 
@@ -110,9 +137,9 @@
                 for(i in mp){
                     t = o[mp[i]]
                     var c = r.insertCell()
-                    /*if(i==2&&t!=null){
+                    if(i==2&&t!=null){
                         t = t.slice(3,t.length)
-                    }*/
+                    }
                     if(mp[i]=="id"){
                         c.innerHTML = "<p class='tc id'>"+t+"</p>"
                     }else{
@@ -127,7 +154,7 @@
             if(srh.match(/^[0-9]{8}$/i)){type = "uid"}
             else if(srh.match(/^[a-zA-Z]{2,}$/)){type = "simple"}
             else if(srh.match(/^[\u4e00-\u9fa5]{1,5}$/)){type = "name"}
-            else {alert("无法匹配匹配搜索")}
+            else {alert("Error:无法匹配搜索")}
 
             if(type){
                 showT()
@@ -138,5 +165,11 @@
             }
         }
     </script>
+<!--<script src="js/material.js"></script>
+    <script src="demo-files/demo.js"></script> --->    
+    <script src="http://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"></script>
+
+
+
 </body>
 </html>
