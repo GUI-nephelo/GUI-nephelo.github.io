@@ -65,7 +65,6 @@
 
       <div class="mdui-container">
         <div class="card" style="display:none">
-
                 <div  style="display:none "id = "nos">
                    <center><h2>未搜到</h2></center>
                 </div>
@@ -92,7 +91,6 @@
                         </tbody>
                     </table>
                 </div>
-
         </div>
       </div>
     </div>
@@ -124,10 +122,9 @@
         function showT(){$(".card").show()}
         function put(ol){
             tb = document.getElementById("tb");
+            tb.innerText=""
             if(ol.length==0){
-                {mdui.alert("错误:无法匹配搜索或查无此人")}
-                tb.innerText=""
-
+                mdui.alert("错误:无法匹配搜索或查无此人")
             }else{
                 $(".table").show()
                 
