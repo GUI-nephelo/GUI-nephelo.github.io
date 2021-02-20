@@ -54,10 +54,10 @@
           <a class="nav-link disabled" data-toggle="pill" href="#photo">照片</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" data-toggle="pill" href="#baseInfo">基本信息</a>
+          <a class="nav-link disabled" data-toggle="pill" href="#newInfo">基本信息</a>
         </li>
           <li class="nav-item">
-          <a class="nav-link disabled" data-toggle="pill" href="#cmisInfo">全面信息</a>
+          <a class="nav-link disabled" data-toggle="pill" href="#oldInfo">全面信息</a>
         </li>
       </ul>
         </div>
@@ -70,14 +70,20 @@
         <div class="tab-pane container" id="photo">
             <div id="pr" class="row"></div>
         </div>
-        <div class="tab-pane container active" id="baseInfo">
+        <div class="tab-pane container active" id="newInfo">
             <div class="card">
                 <div class="card-body">
                     即将推出
                 </div>
             </div>
         </div>
-        <div class="tab-pane container" id="cmisInfo">敬请期待</div>
+        <div class="tab-pane container" id="oldInfo">
+            <div class="card" style="width: 100%;height: 961px;">
+                <div id="oic" class="card-body">
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -87,7 +93,7 @@
 <script src="./static/scripts/myGa.js"></script>
 <script>
     var photo = false;
-    var baseInfo = false;
+    var oldInfo = false;
     $(".nav-link").click((ev)=>{
         hash = ev.target.hash
         console.log(ev.target.innerText);
@@ -96,7 +102,8 @@
             case "#photo":
                 if(!photo){$(document.body).append('<iframe src="./subFP.html" hidden></iframe>');photo = true;}
                 break;
-            case "#baseInfo":
+            case "#oldInfo":
+                if(!oldInfo){$(document.body).append('<iframe src="./subFDO.html" hidden></iframe>');oldInfo = true;}
                 break;
         }
     });
