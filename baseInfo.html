@@ -92,6 +92,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-180926318-1"></script>
 <script src="./static/scripts/myGa.js"></script>
 <script>
+    $(document.body).append('<iframe src="./subFDN.html" hidden></iframe>');
     var photo = false;
     var oldInfo = false;
     var newInfo = false;
@@ -106,9 +107,9 @@
             case "#oldInfo":
                 if(!oldInfo){$(document.body).append('<iframe src="./subFDO.html" hidden></iframe>');oldInfo = true;}
                 break;
-            case "#newInfo":
-                if(!newInfo){$(document.body).append('<iframe src="./subFDN.html" hidden></iframe>');newInfo = true;}
-                break
+            /*case "#newInfo":
+                if(!newInfo){newInfo = true;}
+                break*/
         }
     });
 
