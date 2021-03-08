@@ -73,7 +73,7 @@
         <div class="tab-pane container active" id="newInfo">
             <div class="card">
                 <div class="card-body">
-                    即将推出
+                    <div id="nic"></div>
                 </div>
             </div>
         </div>
@@ -94,6 +94,7 @@
 <script>
     var photo = false;
     var oldInfo = false;
+    var newInfo = false;
     $(".nav-link").click((ev)=>{
         hash = ev.target.hash
         console.log(ev.target.innerText);
@@ -105,6 +106,9 @@
             case "#oldInfo":
                 if(!oldInfo){$(document.body).append('<iframe src="./subFDO.html" hidden></iframe>');oldInfo = true;}
                 break;
+            case "#newInfo":
+                if(!newInfo){$(document.body).append('<iframe src="./subFDN.html" hidden></iframe>');newInfo = true;}
+                break
         }
     });
 

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="./static/content/bootstrap.min.css" />
+    <script src="./static/scripts/modernizr-2.6.2.js"></script>
+    <script src="./static/scripts/jquery-1.10.2.min.js"></script>
+    <script src="./static/scripts/bootstrap.bundle.min.js"></script>
+    <script src="./static/scripts/bootstrap.min.js"></script>
+    <script src="./static/scripts/searcher.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-table/1.12.0/extensions/treegrid/bootstrap-table-treegrid.js">
+    <script src="https://cdn.bootcss.com/jquery-treegrid/0.2.0/js/jquery.treegrid.min.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+    <div class="table-responsive-lg" id="ch">
+        <table class="table table-bordered" id="main_t"></table>
+    </div>
+
+</body>
+<script>
+    p=parent.$("#nic")
+    t=$("#main_t")
+    ch=$("#ch")
+    test=$("#test")
+    function append(c){
+        p.append(c.clone())
+    }
+    window.onload=async ()=>{
+        var o = await new Promise(
+            (rs,rj)=>{
+                GET(sUrl+"/getNewDataJSON",{},val=>rs(val))
+            }
+        )
+        test.text(JSON.stringify(o))
+        putJSON(t[0],o)
+        append(ch)
+        //append(test)
+    }
+
+    function putJSON(t,o){
+        for(i in o){
+            j = o[i]
+            console.log(i,j)
+            r = t.insertRow()
+            if(typeof o[i] != "object"){
+                r.insertCell().innerText = i
+                r.insertCell().innerText = o[i]
+            }else{
+                r.insertCell().innerText = i
+                subt = $('<table class="table"></table>')[0]
+                putJSON(subt,j)
+
+                console.log(subt,j)
+                r.insertCell().innerHTML = subt
+            }
+        }
+    }
+
+</script>
+</html>
