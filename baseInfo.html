@@ -92,7 +92,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-180926318-1"></script>
 <script src="./static/scripts/myGa.js"></script>
 <script>
-    $(document.body).append('<iframe src="./subFDN.html" hidden></iframe>');
+
     var photo = false;
     var oldInfo = false;
     var newInfo = false;
@@ -162,6 +162,7 @@
                 alert(ev["message"]);location.href="searcher.html"
             }
         },(ev)=>{document.write("<h1>Error!! Illegal entrance</h1>");setTimeout(()=>{location.href="searcher.html"},1000)});
+        $(document.body).append('<iframe src="./subFDN.html" hidden></iframe>');
     }
 
 </script>
