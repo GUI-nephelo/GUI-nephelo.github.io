@@ -1,5 +1,10 @@
 
-/*(function() {*/
+/*
+*
+* Author：Shleem
+* Email：awGZbyXZEeJNnufCVKFoQg@hotmail.com
+*
+*/
 
   var canvas, ctx, circ, nodes, mouse, SENSITIVITY, SIBLINGS_LIMIT, DENSITY, NODES_QTY, ANCHOR_LENGTH, MOUSE_RADIUS;
 
