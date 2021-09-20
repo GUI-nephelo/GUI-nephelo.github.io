@@ -125,8 +125,15 @@
 <script src="./static/scripts/jquery-1.10.2.js"></script>
 <script src="./static/scripts/bootstrap.js"></script>
 <script src="./static/scripts/respond.js"></script>
-<script src="./static/scripts/searcher.js"></script>
 <script>
+    function progressBar(view) {
+        return parswInt($(view).css("width").replace("%", "")) / 100;
+    }
+
+    function progressBar(view, degree) {
+        $(view).css("width", degree*100+"%");
+    } 
+    
     var ss = {}
 
     function setDistrict(a, d) {
