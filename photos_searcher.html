@@ -7,64 +7,72 @@
     <link rel="stylesheet" type="text/css" href="./static/content/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="./static/content/site.css" />
     <script src="./static/scripts/modernizr-2.6.2.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="./static/scripts/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="./static/scripts/bootstrap.min.js"></script>
+    <script src="./static/scripts/respond.js"></script>
 </head>
 <body>
 <canvas></canvas>
-<div class="container body-content">
+<div class="container body-content" id="body1" style="display:none">
 <div class="jumbotron">
     <div class="row" id="row">
-        <div class="col-md-1">
-            <div class="btn-group dropdown">
+        <div class="col-md-1 p-3">
+            <div class="btn-group" role="group">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                     <div id="dn">区县</div>
                     <span class="caret"></span>
                 </button>
-                <ul class="dropdown-menu" role="menu">
-                    <a href="javascript:setDistrict(110108,'海淀区')">海淀区</a>
-                    <a href="javascript:setDistrict(110107,'石景山区')">石景山区</a>
-                    <a href="javascript:setDistrict(110109,'门头沟区')">门头沟区</a>
-                    <a href="javascript:setDistrict(110120,'燕山区')">燕山区</a>
-                    <li><a href="javascript:setDistrict(110106,'丰台区')">丰台区</a></li>
-                    <li><a href="javascript:setDistrict(110105,'朝阳区')">朝阳区</a></li>
-                    <li><a href="javascript:setDistrict(110102,'西城区')">西城区</a></li>
-                    <li><a href="javascript:setDistrict(110101,'东城区')">东城区</a></li>
-                    <li><a href="javascript:setDistrict(110114,'昌平区')">昌平区</a></li>
-                    <li><a href="javascript:setDistrict(110115,'大兴区')">大兴区</a></li>
-                    <li><a href="javascript:setDistrict(110116,'怀柔区')">怀柔区</a></li>
-                    <li><a href="javascript:setDistrict(110117,'平谷区')">平谷区</a></li>
-                    <li><a href="javascript:setDistrict(110111,'房山区')">房山区</a></li>
-                    <li><a href="javascript:setDistrict(110112,'通州区')">通州区</a></li>
-                    <li><a href="javascript:setDistrict(110113,'顺义区')">顺义区</a></li>
-                    <li><a href="javascript:setDistrict(110229,'延庆区')">延庆区</a></li>
-                    <li><a href="javascript:setDistrict(110228,'密云区')">密云区</a></li>
-                    <li><a href="javascript:setDistrict(110000,'北京市')">北京市</a></li>
-                </ul>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="javascript:setDistrict(110108,'海淀区')">海淀区</a>
+                    <a class="dropdown-item" href="javascript:setDistrict(110107,'石景山区')">石景山区</a>
+                    <a class="dropdown-item" href="javascript:setDistrict(110109,'门头沟区')">门头沟区</a>
+                    <a class="dropdown-item" href="javascript:setDistrict(110120,'燕山区')">燕山区</a>
+                    <a class="dropdown-item" href="javascript:setDistrict(110106,'丰台区')">丰台区</a>
+                    <a class="dropdown-item" href="javascript:setDistrict(110105,'朝阳区')">朝阳区</a>
+                    <a class="dropdown-item" href="javascript:setDistrict(110102,'西城区')">西城区</a>
+                    <a class="dropdown-item" href="javascript:setDistrict(110101,'东城区')">东城区</a>
+                    <a class="dropdown-item" href="javascript:setDistrict(110114,'昌平区')">昌平区</a>
+                    <a class="dropdown-item" href="javascript:setDistrict(110115,'大兴区')">大兴区</a>
+                    <a class="dropdown-item" href="javascript:setDistrict(110116,'怀柔区')">怀柔区</a>
+                    <a class="dropdown-item" href="javascript:setDistrict(110117,'平谷区')">平谷区</a>
+                    <a class="dropdown-item" href="javascript:setDistrict(110111,'房山区')">房山区</a>
+                    <a class="dropdown-item" href="javascript:setDistrict(110112,'通州区')">通州区</a>
+                    <a class="dropdown-item" href="javascript:setDistrict(110113,'顺义区')">顺义区</a>
+                    <a class="dropdown-item" href="javascript:setDistrict(110229,'延庆区')">延庆区</a>
+                    <a class="dropdown-item" href="javascript:setDistrict(110228,'密云区')">密云区</a>
+                    <a class="dropdown-item" href="javascript:setDistrict(110000,'北京市')">北京市</a>
+                </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="input-group input-group-lg">
-                <span class="input-group-addon">毕业年份:</span>
-                <input type="text" class="form-control" placeholder="2022" disabled="disabled" id="grade" value="2022"/>
-                <span class="input-group-btn">
-                    <div class="btn-group-vertical btn-group-xs">
-                        <button type="button" class="btn btn-default" onclick="$('#grade').attr('value',parseInt($('#grade').val()) + 1)">&uArr;</button>
-                        <button type="button" class="btn btn-default" onclick="$('#grade').attr('value',parseInt($('#grade').val()) - 1)">&dArr;</button>
-                    </div>
-                </span>
+        <div class="col-md-3 p-3">
+            <div class="input-group input-group-lg border border-primary rounded-lg">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">毕业年份:</span>
+                </div>
+                <input type="text" class="form-control" style="height:auto;" placeholder="2022" disabled="disabled" id="grade" value="2022"/>
+                <div class="btn-group-sm btn-group-vertical">
+                    <button type="button" class="btn btn-primary" onclick="$('#grade').attr('value',parseInt($('#grade').val()) + 1)">&uArr;</button>
+                    <button type="button" class="btn btn-primary" onclick="$('#grade').attr('value',parseInt($('#grade').val()) - 1)">&dArr;</button>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="col-md-4 p-3">
+            <div class="input-group input-group-lg h-100">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">教育ID:</span>
+                </div>
+                <input type="text" class="form-control h-100" placeholder="10174389" id="id" />
+                <div class="input-group-append">
+                    <button class="btn btn-primary" onclick="search()">搜索</button>
+                </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="input-group input-group-lg">
-                <span class="input-group-addon">教育ID:</span>
-                <input type="text" class="form-control" placeholder="10174389" id="id" />
-                <span class="input-group-btn">
-                    <button class="btn btn-default" onclick="search()">搜索</button>
-                </span>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <h4>无服务器模式</h4>
+        <div class="col-md-4" onclick="_switch()">
+            <h4 class="p-3 m-3">无服务器模式</h4>
             <!--<img src="http://211.153.80.221/static/cmisfolder/photos/2012003/2021/01124006/09068847.JPG">-->
         </div>
     </div>
@@ -122,10 +130,80 @@
     </div>
     
 </div><!--图片显示框-->
-<script src="./static/scripts/jquery-1.10.2.js"></script>
-<script src="./static/scripts/bootstrap.js"></script>
-<script src="./static/scripts/respond.js"></script>
+</div>
+<div class="container body-content" id="body2">
+<div class="jumbotron" >
+    <div class="row">
+        <div class="col-md-7 p-4">
+            <div class="input-group input-group-sm" onload="body2load()">
+              <div class="input-group-prepend">
+                <button type="button" class="btn btn-primary dropdown-toggle" id="linkTitle" data-toggle="dropdown">
+                  选择网站
+                </button>
+                <div class="dropdown-menu" id="linkList">
+                  <!--<a class="dropdown-item" href="https://www.google.com">GOOGLE</a>
+                  <a class="dropdown-item" href="https://www.runoob.com">RUNOOB</a>
+                  <a class="dropdown-item" href="https://www.taobao.com">TAOBAO</a>-->
+                </div>
+              </div>
+                <input type="text" class="form-control" placeholder="photoUrl" id="url">
+                <div class="input-group-append">
+                    <button class="btn btn-success" type="button" onclick='go($("#url").val())'>Go</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" onclick="_switch()">
+            <h4 class="p-3 m-3">自助查询</h4>
+        </div>
+        <div class="card m-4">
+            <div class="card-body" id="photo">
+
+            </div>
+        </div>
+    </div>
+</div>
 <script>
+    String.prototype.format = function (args) {
+    var result = this;
+    if (arguments.length > 0) {
+        if (arguments.length == 1 && typeof (args) == "object") {
+            for (var key in args) {
+                if (args[key] != undefined) {
+                    var reg = new RegExp("({" + key + "})", "g");
+                    result = result.replace(reg, args[key]);
+                }
+            }
+        }
+        else {
+            for (var i = 0; i < arguments.length; i++) {
+                if (arguments[i] != undefined) {
+                    var reg = new RegExp("({[" + i + "]})", "g");
+                    result = result.replace(reg, arguments[i]);
+                }
+            }
+        }
+    }
+    return result;
+}
+    function sub_pic(url, onok) {
+        var tmp = document.createElement("img");
+        tmp.src = url;
+        tmp.onload = (ev) => {
+            onok(true, ev,url);
+        }
+        tmp.onerror = () => {
+            onok(false, null,url);
+        }
+    }
+
+    function s_sub_pic(baseurl,grade, ss, uid,i,ii,onok) {
+        sub_pic(baseurl.format({
+            "level": "201200" + (parseInt(ii) + 1), "grade": parseInt(grade) - 3 * (2 - ii), "sid": ss[i]["id"], "uidi": uid
+        }), (status, ev, url) => {
+                onok(status, url, ii, i);
+        }
+        );
+    }
     function progressBar(view) {
         return parswInt($(view).css("width").replace("%", "")) / 100;
     }
@@ -190,6 +268,53 @@
             main_re();
         }
     }
+    var a=true;
+    function _switch(){
+        a=!a;
+        if(!a){
+            $("#body1").hide()
+            $("#body2").show()
+        }else{
+            $("#body2").hide()
+            $("#body1").show()
+        }
+    }
+    var ll=[];
+    var mainLink;
+    $.ajax({
+        type: "get",
+        url: "./static/data/photoLink.json",
+        dataType: "json",
+        success: function (data) {
+            ll = data;
+            mainLink=ll[0]
+            $("#linkTitle").text(ll[0])
+            for(i in data){
+                $("#linkList").append('<a class="dropdown-item" href="javascript: setLink('+i+')">'+data[i]+'</a>')
+            }
+        }
+    });
+    function setLink(n){
+        mainLink=ll[n]
+        $("#linkTitle").text(mainLink)
+    }
+
+    function go(url){
+        console.log(url)
+        sub_pic(mainLink+url,(status,ev,url)=>
+        {
+            console.log(ev)
+            $("#photo").html("")
+            if(status){
+                $("#photo").append(ev.target)
+                $("img").attr("style","width:240px;height:320px")
+            }else{
+                $("#photo").append("<h2>照片未找到</h2>")
+            }
+        })
+    }
+
+
 
 </script>
 </div>
