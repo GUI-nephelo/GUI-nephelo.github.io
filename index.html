@@ -2,33 +2,91 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>GUI-nephelo's toolchain</title>
+    <title>GUI-nephelo's toolchain Beta</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/material.css"/>
-    <script src="./static/scripts/jquery-1.10.2.min.js"></script>
-</head>
-<body>
-    <div class="toolbar bg-blue-500 color-white">
-        <button class="icon-button" id="sidemenu-button" onclick="SideMenu.toggle(document.querySelector('#sidemenu'));"><i class="icon-menu"></i></button>
-        <span class="toolbar-label">GUI-nephelo's toolchain</span>
-        <span class="float-right" id="switch-container">
-            <div class="switch">
-                <input type="checkbox" id="dark-theme-switch" onchange="Theme.setTheme(this.checked ? 'dark' : 'light')"/>
-                <label for="dark-theme-switch"></label>
-                <label class="form-control-label">黑暗模式</label>
-            </div>
-        </span>
+    <!--<link rel="stylesheet" href="css/mdui.css"/>-->
+    <!-- MDUI CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"
+      integrity="sha384-cLRrMq39HOZdvE0j6yBojO4+1PrHfB7a9l5qLcmRm/fiWXYY+CndJPmyu5FV/9Tw"
+      crossorigin="anonymous"
+    />
 
-    </div>	
-    <div align="center" vertical-align="middle" horizen-align="middle">
-            <br></br>
-            <br></br>
-            <br></br>
+    <!-- MDUI JavaScript -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"
+      integrity="sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr+uHgjlYvkABr95TCOz3A"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/gh/jquery/jquery/dist/jquery.min.js"></script>
+</head>
+<body class="mdui-theme-primary-indigo mdui-theme-accent-pink mdui-theme-layout-auto  mdui-drawer-body-left mdui-drawer-body-left mdui-appbar-with-toolbar  mdui-theme-primary-amber">
+    <header class="mdui-appbar mdui-appbar-fixed">
+    
+        <div class="mdui-toolbar mdui-color-theme">
+          <button  class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"  mdui-drawer="{target: '#main-drawer', swipe: true}"><i  class="mdui-icon material-icons">menu</i></button>
+          <a  class="mdui-typo-headline mdui-hidden-xs">GUI-nephelo's toolchain Beta</a>
+          <a href="index.html" class="mdui-typo-title" style="font-size: medium;">工具链测试端入口</a>
+          <div class="mdui-toolbar-spacer"></div>
+          <a onclick="beta()" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>
+          <a href="index.html" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">refresh</i></a>
+        </div>
+</header>
+
+      <div class="mdui-drawer  " id="main-drawer" >
+        <ul class="mdui-list" mdui-collapse="{accordion: true}" style="margin-bottom: 76px;">
+            <li onclick="beta()" class="mdui-list-item mdui-ripple">
+              <i  class="mdui-list-item-avatar mdui-icon material-icons">folder</i>
+              <div  class="mdui-list-item-content">Photos</div>
+            </li>
+            <li onclick="beta()" class="mdui-list-item mdui-ripple">
+              <i class="mdui-list-item-avatar mdui-icon material-icons" >folder</i>
+              <div class="mdui-list-item-content">Recipes</div>
+            </li>
+            <li onclick="beta()" class="mdui-list-item mdui-ripple">
+              <i class="mdui-list-item-avatar mdui-icon material-icons">assignment</i>
+              <div class="mdui-list-item-content">Work</div>
+            </li>
+          </ul>
+          
+      </div>
+    <div align="center" vertical-align="middle" horizen-align="middle" class="mdui-container ">
+            <h1></h1>
+            <br>
+            <h1></h1>
+            <h1></h1>
+            <h1></h1>
+            
+            <br>
             <h1> Welcome to GUI-nephelo's toolchain</h1>
-            <br></br>
-            <a href="/cmisSearch"><button class="button raised color-blue-500">点我进入学生查询 </button></a>
-            <a href="/photos_searcher.html"><button class="button raised color-blue-500">点我进入照片查询 </button></a>
+            <div style="font-weight: 900px;font-style: italic;" font-size="90px">Beta</div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <a href="/cmisSearch" ><button class="mdui-btn mdui-btn-raised mdui-color-theme-accent">进入学生查询</button></a>
+            
+            <a href="/photos_searcher.html"><button class="mdui-btn mdui-btn-raised mdui-color-theme-accent">进入照片查询</button></a>
+            
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h1></h1>
+            <h1></h1>
+            <br>
+            
+            <br>
+            <h5>©2020-2021 版权所有</h5>
+            <h5>最后更新时间：2021/10/21</h5>
+            <br>
+            <br>
+            
     </div>
     <div class="sidemenu" id="sidemenu" hidden>
         <div class="sidemenu-hero fade">
@@ -49,8 +107,13 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-180926318-1"></script>
 <script src="./static/scripts/myGa.js"></script>
 
-<script src="js/material.js"></script>
-<script src="demo-files/demo.js"></script>
+<script src="/js/mdui.js"></script>
+<script>
+    function beta(){
+            mdui.alert("©2020-2021 版权所有 最后更新时间：2021/10/21 14：06 ")
+        }
+</script>
+<!--<script src="demo-files/demo.js"></script> -->
 
 
     
