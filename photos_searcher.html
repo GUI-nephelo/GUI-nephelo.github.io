@@ -227,14 +227,28 @@
     }
     //var baseUrl1 = "http://211.153.82.232/cmisfolder/photos/{level}/{grade}/{sid}/{uid}.JPG";
     //var baseUrl2 = "http://211.153.82.232/cmisfolder/photos/{level}/{grade}/{sid}/{uid}.jpg";
-    var baseUrl1 = "http://211.153.80.221/static/cmisfolder/photos/{level}/{grade}/{sid}/{uidi}.JPG"
-    var baseUrl2 = "http://211.153.80.221/static/cmisfolder/photos/{level}/{grade}/{sid}/{uidi}.jpg"
+    var ll=[];
+    var mainLink;
+    $.ajax({
+        type: "get",
+        url: "./static/data/photoLink.json",
+        dataType: "json",
+        success: function (data) {
+            ll = data;
+            mainLink=ll[0]
+            $("#linkTitle").text(ll[0])
+            for(i in data){
+                $("#linkList").append('<a class="dropdown-item" href="javascript: setLink('+i+')">'+data[i]+'</a>')
+            }
+        }
+    });
     
-
     function main_re() {
         var pid = ["#pSp", "#mSp", "#hSp"];
         var nid = ["#pSn", "#mSn", "#hSn"];
         var Prgid = ["#pPrg","#mPrg","#hPrg"]
+        var baseUrl1 = mainLink+"/cmisfolder/photos/{level}/{grade}/{sid}/{uidi}.JPG"
+        var baseUrl2 = mainLink+"/cmisfolder/photos/{level}/{grade}/{sid}/{uidi}.jpg"
         for (var ii in [0, 1, 2]) {
             $(nid[ii]).text("未搜到");
             $(pid[ii]).attr("src", "https://qlogo3.store.qq.com/qzone/1736319094/1736319094/100?1594915443");
@@ -279,21 +293,6 @@
             $("#body1").show()
         }
     }
-    var ll=[];
-    var mainLink;
-    $.ajax({
-        type: "get",
-        url: "./static/data/photoLink.json",
-        dataType: "json",
-        success: function (data) {
-            ll = data;
-            mainLink=ll[0]
-            $("#linkTitle").text(ll[0])
-            for(i in data){
-                $("#linkList").append('<a class="dropdown-item" href="javascript: setLink('+i+')">'+data[i]+'</a>')
-            }
-        }
-    });
     function setLink(n){
         mainLink=ll[n]
         $("#linkTitle").text(mainLink)
