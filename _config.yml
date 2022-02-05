@@ -18,7 +18,8 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title:  GUI_nephelo's Blog
+title:  GUI_nephelo Blog
+SEOTitle: _ | nephelo Blog
 email: GUI_nephelo@outlook.com
 description: >- # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
@@ -26,13 +27,56 @@ description: >- # this means to ignore newlines until "baseurl:"
   Google search results) and in your feed.xml site description.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://gui-nephelo.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: ""
+
 twitter_username: GUI_nephelo
 github_username:  GUI-nephelo
 
 # Build settings
-theme: minimal-mistakes-jekyll
+highlighter: rouge
+permalink: pretty
+paginate: 10
 plugins:
   - jekyll-feed
+  - jekyll-paginate
+
+# Sidebar settings
+sidebar: true                           # whether or not using Sidebar.
+sidebar-about-description: "nephelo，编程语言初心，爬虫/AI爱好者"
+sidebar-avatar: https://github.com/gui-nephelo.png # use absolute URL, seeing it's used in both `/` and `/about/`
+
+# Featured Tags
+featured-tags: true                     # whether or not using Feature-Tags
+featured-condition-size: 1     
+
+# Markdown settings
+# replace redcarpet to kramdown,
+# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
+# document: http://jekyllrb.com/docs/configuration/#kramdown
+markdown: kramdown
+kramdown:
+  input: GFM                            # use Github Flavored Markdown !important
+  syntax_highlighter_opts:
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
+
+header-img: img/home-bg-o.jpg
+
+friends: [
+  {
+    title: "MIAIONE",
+    href: "https://miaione.github.io",
+    img_url: "http://github.com/miaione.png"
+  },
+  {
+    title: "zo-no",
+    href: "https://zo-no.github.io",
+    img_url: "http://github.com/zo-no.png"
+  }
+]
 
 # Exclude from processing.
 # The following items will not be processed, by default.
