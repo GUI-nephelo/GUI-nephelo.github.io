@@ -3,8 +3,8 @@
 <h5>FRIENDS</h5>
 <ul class="list-inline">
   {% for friend in site.friends %}
-  <img src="{{friend.img_url}}"></img>
-  <li><a href="{{friend.href}}">{{friend.title}}</a></li>
+  <li><a href="{{friend.href}}"><img src="{{friend.img_url}}" style="border-radius: 5px;width: 4rem;display: unset;margin: 5px;"></img>{{friend.title}}</a></li>
+  <br>
   {% endfor %}
 </ul>
 {% endif %}
